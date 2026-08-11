@@ -11,7 +11,7 @@ export const siteConfig = {
   contact: {
     email: "nss@nitdgp.ac.in",
     phone: "",
-    address: "MAB, NSS Cabin, NIT Durgapur, Durgapur, West Bengal 713209, India",
+    address: "NSS Cabin, MAB, NIT Durgapur, Durgapur, West Bengal, India - 713209",
   },
 };
 
