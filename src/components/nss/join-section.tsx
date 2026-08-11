@@ -1,5 +1,0 @@
-import { Heart, Mail } from 'lucide-react';
-import { homeContent } from '@/data/home';
-import { siteConfig } from '@/data/site';
-
-export function JoinSection() { const subject = encodeURIComponent('NSS volunteer interest'); return <section id="join" className="bg-primary py-16 sm:py-24" aria-label="Join NSS"><div className="mx-auto max-w-3xl px-4 text-center sm:px-6"><div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary-foreground/10 px-4 py-1.5 text-sm font-medium text-primary-foreground"><Heart className="h-4 w-4" /> {homeContent.join.eyebrow}</div><h2 className="mb-6 text-3xl font-bold tracking-tight text-primary-foreground sm:text-4xl">{homeContent.join.title}</h2><p className="mx-auto max-w-2xl leading-relaxed text-primary-foreground/80">{homeContent.join.description}</p><a href={`mailto:${siteConfig.contact.email}?subject=${subject}`} className="mt-8 inline-flex items-center gap-2 rounded-lg bg-card px-5 py-3 font-medium text-primary shadow-floating hover:bg-card/90"><Mail className="h-4 w-4" /> {homeContent.join.action}</a></div></section>; }
