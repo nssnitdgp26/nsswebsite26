@@ -8,11 +8,6 @@ export const homeContent = {
       "The official NSS unit of NIT Durgapur — building community through service, one initiative at a time. Discover our work, join our mission, and make a difference.",
 
     primaryAction: {
-      label: "Express Interest",
-      href: "/contact",
-    },
-
-    secondaryAction: {
       label: "Explore Events",
       href: "/events",
     },

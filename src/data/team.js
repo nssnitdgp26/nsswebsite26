@@ -1,5 +1,5 @@
 export const facultyAdvisor = {
-  name: "Dr.Shri Krishan Rai",
+  name: "Dr. Shri Krishan Rai",
   designation: "Associate Professor",
   department: "",
   photo: "src/images/skraisir.jpg",
@@ -175,16 +175,16 @@ export const previousTeams = [
         photo: "src/images/2026/lokesh.png",
       },
       {
-        name: "Member Name",
+        name: "Balija Satya Vaibhav",
         role: "",
         department: "",
-        photo: "/team/2026/member-8.jpg",
+        photo: "src/images/2026/vaibhav.png",
       },
       {
-        name: "Member Name",
+        name: "Rishita Sivala",
         role: "",
         department: "",
-        photo: "/team/2026/member-9.jpg",
+        photo: "src/images/2026/rishitha.png",
       },
       {
         name: "Thanmai Jaddu",
@@ -227,4 +227,5 @@ export const previousTeams = [
       },
     ],
   },
+  
 ];

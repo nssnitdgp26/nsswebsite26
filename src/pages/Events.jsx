@@ -1,306 +1,477 @@
-import React, { useMemo, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
 import {
   ArrowRight,
   CalendarDays,
-  CheckCircle2,
-  Clock3,
   MapPin,
+  Sparkles,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 import { events, eventsSectionContent } from "@/data/events";
-import { PageIntro } from "@/component/page-shell";
 
-const statusConfig = {
-  completed: {
-    label: "Completed",
-    icon: CheckCircle2,
-    className: "bg-primary/10 text-primary border-primary/20",
-  },
-  registration_open: {
-    label: "Upcoming",
-    icon: Clock3,
-    className:
-      "bg-brand-service/10 text-brand-service border-brand-service/20",
-  },
-};
 
 function formatDate(date) {
   if (!date) return "";
 
-  return new Date(`${date}T00:00:00`).toLocaleDateString("en-IN", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
-}
-
-function getYear(date) {
-  if (!date) return "Other";
-
-  return new Date(`${date}T00:00:00`).getFullYear();
-}
-
-function EventTimelineItem({ event, index }) {
-  const ref = useRef(null);
-
-  const inView = useInView(ref, {
-    once: true,
-    margin: "-80px",
-  });
-
-  const status = statusConfig[event.status] ?? statusConfig.completed;
-  const StatusIcon = status.icon;
-
-  return (
-    <motion.article
-      ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={
-        inView
-          ? { opacity: 1, y: 0 }
-          : { opacity: 0, y: 30 }
-      }
-      transition={{
-        duration: 0.5,
-        delay: index * 0.06,
-      }}
-      className="relative grid gap-6 md:grid-cols-[180px_1fr] md:gap-10"
-    >
-      <div className="relative md:text-right">
-        <p className="text-sm font-semibold text-primary">
-          {formatDate(event.startDate)}
-        </p>
-
-        {event.endDate && event.endDate !== event.startDate && (
-          <p className="mt-1 text-xs text-muted-foreground">
-            to {formatDate(event.endDate)}
-          </p>
-        )}
-
-        <div
-          aria-hidden="true"
-          className="absolute -right-[2.65rem] top-1 hidden h-4 w-4 rounded-full border-4 border-background bg-primary md:block"
-        />
-      </div>
-
-      <div className="relative">
-        <div
-          aria-hidden="true"
-          className="absolute -left-[2.15rem] top-1.5 h-3 w-3 rounded-full border-2 border-background bg-primary md:hidden"
-        />
-
-        <div className="overflow-hidden rounded-2xl border bg-card shadow-soft transition-shadow hover:shadow-medium">
-          {event.image && (
-            <div className="aspect-[16/7] overflow-hidden bg-muted">
-              <img
-                src={event.image}
-                alt={event.title}
-                className="h-full w-full object-cover transition-transform duration-500 hover:scale-[1.02]"
-              />
-            </div>
-          )}
-
-          <div className="p-6 sm:p-7">
-            <div className="flex flex-wrap items-center gap-2">
-              <span
-                className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold ${status.className}`}
-              >
-                <StatusIcon className="h-3.5 w-3.5" />
-                {status.label}
-              </span>
-
-              {event.category && (
-                <span className="rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">
-                  {event.category}
-                </span>
-              )}
-            </div>
-
-            <h2 className="mt-4 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-              {event.title}
-            </h2>
-
-            {event.description && (
-              <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
-                {event.description}
-              </p>
-            )}
-
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-x-6">
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <CalendarDays className="h-4 w-4 shrink-0 text-primary" />
-                <span>{formatDate(event.startDate)}</span>
-              </div>
-
-              {event.venue && (
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <MapPin className="h-4 w-4 shrink-0 text-primary" />
-                  <span>{event.venue}</span>
-                </div>
-              )}
-            </div>
-
-            {(event.registrationLink || event.outcome) && (
-              <div className="mt-7 flex flex-wrap gap-3 border-t pt-5">
-                {event.registrationLink && (
-                  <a
-                    href={event.registrationLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground transition-all hover:-translate-y-0.5 hover:bg-primary/90"
-                  >
-                    Register now
-                    <ArrowRight className="h-4 w-4" />
-                  </a>
-                )}
-
-                {event.outcome && (
-                  <a
-                    href={event.outcome}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
-                  >
-                    View outcomes
-                    <ArrowRight className="h-4 w-4" />
-                  </a>
-                )}
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    </motion.article>
+  return new Date(`${date}T00:00:00`).toLocaleDateString(
+    "en-IN",
+    {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    }
   );
 }
 
-function YearSection({ year, yearEvents }) {
+
+/* =========================================================
+   EVENTS HERO
+========================================================= */
+
+function EventsHero({ eventCount }) {
   return (
-    <section className="relative">
-      <div className="mb-10 flex items-center gap-4">
-        <div className="flex h-12 w-20 shrink-0 items-center justify-center rounded-xl bg-primary text-lg font-bold text-primary-foreground shadow-sm">
-          {year}
+    <section className="relative overflow-hidden border-b border-white/5 bg-slate-900 text-white">
+
+      {/* BACKGROUND GLOW */}
+
+      <motion.div
+        animate={{
+          x: [0, 80, 0],
+          y: [0, 40, 0],
+          scale: [1, 1.15, 1],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute -left-32 -top-32 h-96 w-96 rounded-full bg-primary/20 blur-3xl"
+      />
+
+
+      <motion.div
+        animate={{
+          x: [0, -70, 0],
+          y: [0, -30, 0],
+          scale: [1.1, 0.9, 1.1],
+        }}
+        transition={{
+          duration: 12,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute -bottom-40 -right-32 h-[30rem] w-[30rem] rounded-full bg-primary/10 blur-3xl"
+      />
+
+
+      {/* FLOATING DECORATIVE CIRCLES */}
+
+      <motion.div
+        animate={{
+          y: [0, -18, 0],
+          rotate: [0, 10, 0],
+        }}
+        transition={{
+          duration: 6,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute right-[10%] top-[18%] h-14 w-14 rounded-full border border-white/10"
+      />
+
+
+      <motion.div
+        animate={{
+          y: [0, 25, 0],
+          x: [0, 15, 0],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute bottom-[18%] right-[25%] h-5 w-5 rounded-full bg-primary/60"
+      />
+
+
+      <motion.div
+        animate={{
+          rotate: [0, 180, 360],
+        }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+        className="absolute right-[8%] top-[40%] h-24 w-24 border border-white/5"
+      />
+
+
+      <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24 lg:px-8 lg:py-28">
+
+        <div className="max-w-4xl">
+
+          {/* EYEBROW */}
+
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex items-center gap-2"
+          >
+            <Sparkles className="h-4 w-4 text-primary" />
+
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/70">
+              {eventsSectionContent.eyebrow || "NSS NIT Durgapur"}
+            </p>
+
+          </motion.div>
+
+
+          {/* TITLE */}
+
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.7,
+              delay: 0.1,
+            }}
+            className="mt-6 text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl"
+          >
+            {eventsSectionContent.title}
+          </motion.h1>
+
+
+          {/* DESCRIPTION */}
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.6,
+              delay: 0.25,
+            }}
+            className="mt-7 max-w-3xl text-base leading-8 text-white/65 sm:text-lg"
+          >
+            {eventsSectionContent.description}
+          </motion.p>
+
+
+          {/* HERO BOTTOM INFO */}
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.5,
+              delay: 0.4,
+            }}
+            className="mt-10 flex flex-wrap items-center gap-4"
+          >
+
+            <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-5 py-4 backdrop-blur-sm">
+
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+                <CalendarDays className="h-5 w-5" />
+              </div>
+
+              <div>
+
+                <p className="text-2xl font-bold text-white">
+                  {eventCount}+
+                </p>
+
+                <p className="text-xs font-medium uppercase tracking-wide text-white/50">
+                  Events & Initiatives
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div className="flex items-center gap-2 text-sm text-white/55">
+
+              <span className="h-2 w-2 animate-pulse rounded-full bg-primary" />
+
+              Creating impact through action
+
+            </div>
+
+          </motion.div>
+
         </div>
 
-        <div className="h-px flex-1 bg-border" />
       </div>
 
-      <div className="relative ml-5 border-l border-primary/20 pl-8 md:ml-[180px] md:border-l-0 md:pl-10">
-        <div
-          aria-hidden="true"
-          className="absolute bottom-0 left-[calc(50%-90px)] top-0 hidden w-px bg-primary/20 md:block"
-        />
-
-        <div className="space-y-10">
-          {yearEvents.map((event, index) => (
-            <EventTimelineItem
-              key={event.id ?? event.slug ?? `${event.title}-${index}`}
-              event={event}
-              index={index}
-            />
-          ))}
-        </div>
-      </div>
     </section>
   );
 }
 
-export function Events() {
-  const sortedEvents = useMemo(() => {
-    return [...events].sort(
-      (a, b) =>
-        new Date(`${b.startDate}T00:00:00`) -
-        new Date(`${a.startDate}T00:00:00`)
-    );
-  }, []);
 
-  const eventsByYear = useMemo(() => {
-    return sortedEvents.reduce((groups, event) => {
-      const year = getYear(event.startDate);
+/* =========================================================
+   EVENT CARD
+========================================================= */
 
-      if (!groups[year]) {
-        groups[year] = [];
-      }
-
-      groups[year].push(event);
-
-      return groups;
-    }, {});
-  }, [sortedEvents]);
-
-  const years = Object.keys(eventsByYear).sort(
-    (a, b) => Number(b) - Number(a)
-  );
-
+function EventCard({ event, index }) {
   return (
-    <main>
-      <PageIntro
-        eyebrow={eventsSectionContent.eyebrow ?? "NSS Activities"}
-        title={eventsSectionContent.title ?? "Events & Activities"}
-        description={
-          eventsSectionContent.description ??
-          "Explore the events, drives, campaigns and community initiatives conducted by NSS NIT Durgapur."
-        }
-      />
+    <motion.article
+      initial={{
+        opacity: 0,
+        y: 35,
+      }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+      }}
+      viewport={{
+        once: true,
+        amount: 0.15,
+      }}
+      transition={{
+        duration: 0.5,
+        delay: index * 0.07,
+      }}
+      whileHover={{
+        y: -6,
+      }}
+      className="
+        group
+        flex
+        flex-col
+        overflow-hidden
+        rounded-2xl
+        border
+        border-slate-200
+        bg-white
+        shadow-sm
+        transition-shadow
+        duration-300
+        hover:border-primary/30
+        hover:shadow-xl
+      "
+    >
 
-      <section
-        className="px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24"
-        aria-label="NSS events timeline"
-      >
-        <div className="mx-auto max-w-6xl">
-          {years.length > 0 ? (
-            <div className="space-y-16">
-              {years.map((year) => (
-                <YearSection
-                  key={year}
-                  year={year}
-                  yearEvents={eventsByYear[year]}
-                />
-              ))}
-            </div>
-          ) : (
-            <div className="rounded-2xl border bg-card px-6 py-16 text-center">
-              <CalendarDays className="mx-auto h-8 w-8 text-muted-foreground" />
+      {/* EVENT POSTER */}
 
-              <h2 className="mt-4 text-lg font-semibold">
-                No events available
-              </h2>
+      <div className="relative aspect-[4/3] overflow-hidden bg-slate-200">
 
-              <p className="mt-2 text-sm text-muted-foreground">
-                Events and activities will appear here when they are added.
-              </p>
+        {event.image ? (
+          <img
+            src={event.image}
+            alt={event.title}
+            className="
+              h-full
+              w-full
+              object-cover
+              transition-transform
+              duration-700
+              group-hover:scale-105
+            "
+          />
+        ) : (
+          <div className="flex h-full items-center justify-center bg-slate-800 text-sm text-white/40">
+            Event Poster
+          </div>
+        )}
+
+
+        {/* CATEGORY */}
+
+        {event.category && (
+          <div className="absolute left-4 top-4">
+
+            <span className="rounded-full bg-slate-950/85 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-white backdrop-blur-sm">
+              {event.category}
+            </span>
+
+          </div>
+        )}
+
+
+        {/* IMAGE OVERLAY */}
+
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/30 to-transparent" />
+
+      </div>
+
+
+      {/* CARD CONTENT */}
+
+      <div className="flex flex-1 flex-col p-6">
+
+        <h2 className="text-xl font-bold tracking-tight text-slate-900 transition-colors duration-300 group-hover:text-primary sm:text-2xl">
+          {event.title}
+        </h2>
+
+
+        <p className="mt-3 line-clamp-3 text-sm leading-7 text-slate-600">
+          {event.description}
+        </p>
+
+
+        {/* EVENT DETAILS */}
+
+        <div className="mt-6 space-y-3 border-t border-slate-100 pt-5 text-sm text-slate-500">
+
+          {event.startDate && (
+            <div className="flex items-center gap-2.5">
+
+              <CalendarDays className="h-4 w-4 shrink-0 text-primary" />
+
+              <span>
+                {formatDate(event.startDate)}
+              </span>
+
             </div>
           )}
+
+
+          {event.venue && (
+            <div className="flex items-center gap-2.5">
+
+              <MapPin className="h-4 w-4 shrink-0 text-primary" />
+
+              <span className="line-clamp-1">
+                {event.venue}
+              </span>
+
+            </div>
+          )}
+
         </div>
-      </section>
 
-      <section className="px-4 pb-20 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-5xl rounded-3xl bg-primary px-7 py-12 text-center text-primary-foreground sm:px-12">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] opacity-80">
-            NSS NIT Durgapur
-          </p>
 
-          <h2 className="mt-3 text-3xl font-bold sm:text-4xl">
-            Be a part of the next initiative.
-          </h2>
+        {/* VIEW EVENT */}
 
-          <p className="mx-auto mt-4 max-w-2xl leading-7 opacity-80">
-            Stay connected with NSS NIT Durgapur and take part in activities
-            that create meaningful impact in the community.
-          </p>
+        <Link
+          to={`/events/${event.slug}`}
+          className="group/button mt-7 inline-flex items-center gap-2 self-start text-sm font-semibold text-slate-900 transition-colors hover:text-primary"
+        >
 
-          <a
-            href="/contact"
-            className="mt-7 inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 font-semibold text-primary transition-transform hover:-translate-y-0.5"
+          View Event
+
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 transition-all duration-300 group-hover/button:bg-primary group-hover/button:text-primary-foreground">
+
+            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/button:translate-x-0.5" />
+
+          </span>
+
+        </Link>
+
+      </div>
+
+    </motion.article>
+  );
+}
+
+
+/* =========================================================
+   MAIN EVENTS PAGE
+========================================================= */
+
+function Events() {
+  const sortedEvents = [...events].sort(
+    (a, b) =>
+      new Date(`${b.startDate}T00:00:00`) -
+      new Date(`${a.startDate}T00:00:00`)
+  );
+
+
+  return (
+    <main className="min-h-screen bg-slate-100 text-slate-900">
+
+      {/* HERO */}
+
+      <EventsHero eventCount={sortedEvents.length} />
+
+
+      {/* EVENTS SECTION */}
+
+      <section className="relative px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+
+        {/* SUBTLE BACKGROUND */}
+
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+
+          <div className="absolute left-0 top-32 h-72 w-72 rounded-full bg-primary/5 blur-3xl" />
+
+        </div>
+
+
+        <div className="relative mx-auto max-w-7xl">
+
+          {/* SECTION HEADER */}
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mb-12"
           >
-            Get in touch
-            <ArrowRight className="h-4 w-4" />
-          </a>
+
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
+              Event Archive
+            </p>
+
+
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+              Explore Our Initiatives
+            </h2>
+
+
+            <p className="mt-4 max-w-2xl text-base leading-7 text-slate-600">
+              Discover the events, campaigns, awareness drives, and
+              community initiatives organised by NSS NIT Durgapur.
+            </p>
+
+          </motion.div>
+
+
+          {/* EVENT CARDS */}
+
+          {sortedEvents.length > 0 ? (
+
+            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+
+              {sortedEvents.map((event, index) => (
+
+                <EventCard
+                  key={event.slug}
+                  event={event}
+                  index={index}
+                />
+
+              ))}
+
+            </div>
+
+          ) : (
+
+            <div className="rounded-2xl border border-dashed border-slate-300 bg-white px-6 py-20 text-center">
+
+              <h2 className="text-2xl font-bold text-slate-900">
+                No events yet
+              </h2>
+
+              <p className="mt-3 text-slate-500">
+                Events organised by NSS NIT Durgapur will appear here.
+              </p>
+
+            </div>
+
+          )}
+
         </div>
+
       </section>
+
     </main>
   );
 }
+
 
 export default Events;

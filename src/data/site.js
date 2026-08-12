@@ -4,25 +4,54 @@
 
 export const siteConfig = {
   name: "NSS NIT Durgapur",
+
   motto: "Not Me, But You",
+
   description:
     "The National Service Scheme unit at NIT Durgapur, fostering community service and youth development.",
 
+
   contact: {
-    email: "nss@nitdgp.ac.in",
-    phone: "",
-    address: "NSS Cabin, MAB, NIT Durgapur, Durgapur, West Bengal, India - 713209",
+    email: "nss.nitdgp123@gmail.com",
+
+    address:
+      "NSS Cabin, MAB, NIT Durgapur, Durgapur, West Bengal, India - 713209",
+
+    mapLink:
+      "https://www.google.com/maps/search/?api=1&query=NIT+Durgapur",
+  },
+
+
+  social: {
+    linkedin: "https://www.linkedin.com/company/nss-nit-durgapur/",
+    instagram: "https://www.instagram.com/nss_nitdgp/",
+    facebook: "https://www.facebook.com/nssnitdgp/",
   },
 };
 
+
 export const navigation = [
-  { label: "Home", href: "/" },
-  { label: "Events", href: "/events" },
-  { label: "Team", href: "/team" },
-  { label: "Contact Us", href: "/contact" },
+  {
+    label: "Home",
+    href: "/",
+  },
+  {
+    label: "Events",
+    href: "/events",
+  },
+  {
+    label: "Team",
+    href: "/team",
+  },
+  {
+    label: "Contact Us",
+    href: "/contact",
+  },
 ];
 
+
 export const footerLinks = navigation.slice(0);
+
 
 export const relatedLinks = [
   {

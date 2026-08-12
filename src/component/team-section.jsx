@@ -14,22 +14,75 @@ import {
 const teamConfig = {
   management: {
     title: "Management Team",
-    description:
-      "",
+    description: "",
   },
 
   technical: {
     title: "Technical Team",
-    description:
-      "",
+    description: "",
   },
 
   executive: {
     title: "Executive Team",
-    description:
-      "",
+    description: "",
   },
 };
+
+/* =========================================================
+   Team Hero
+========================================================= */
+
+function TeamHero() {
+  return (
+    <section className="border-b border-border bg-slate-100/70">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-16">
+          
+          {/* Hero Content */}
+          <div className="max-w-4xl">
+            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-primary">
+              NSS NIT Durgapur
+            </p>
+
+            <h1 className="text-4xl font-bold leading-[1.08] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+              The People Behind NSS NIT Durgapur
+            </h1>
+
+            <p className="mt-6 max-w-3xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
+              Meet the faculty and student leaders who guide and coordinate
+              the National Service Scheme at NIT Durgapur.
+            </p>
+          </div>
+
+          {/* Active Volunteers KPI */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5 }}
+            className="w-full"
+          >
+            <div className="rounded-2xl border border-slate-200 bg-slate-800 p-7 text-white shadow-xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-white/60">
+                Active Volunteers
+              </p>
+
+              <p className="mt-3 text-5xl font-bold tracking-tight sm:text-6xl">
+                180+
+              </p>
+
+              <p className="mt-2 text-sm leading-6 text-white/65">
+                Students actively contributing to NSS initiatives and
+                community service.
+              </p>
+            </div>
+          </motion.div>
+
+        </div>
+      </div>
+    </section>
+  );
+}
 
 /* =========================================================
    Member Card
@@ -132,24 +185,14 @@ function TeamCategory({ type, members }) {
           {config.title}
         </h3>
 
-        <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          {config.description}
-        </p>
+        {config.description && (
+          <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+            {config.description}
+          </p>
+        )}
       </div>
 
       {/* Members */}
-
-      {/*
-        Fixed card widths prevent long names from changing
-        the size of individual cards.
-
-        Desktop:
-        - 5 members -> centered in one row
-        - 6 members -> centered in one row
-
-        Smaller screens:
-        - Cards wrap naturally while remaining centered.
-      */}
       <div
         className="
           mx-auto
@@ -289,19 +332,16 @@ function TeamContent({ team }) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
     >
-      {/* Management */}
       <TeamCategory
         type="management"
         members={team.management}
       />
 
-      {/* Technical */}
       <TeamCategory
         type="technical"
         members={team.technical}
       />
 
-      {/* Executive */}
       <TeamCategory
         type="executive"
         members={team.executive}
@@ -315,20 +355,6 @@ function TeamContent({ team }) {
 ========================================================= */
 
 export function TeamSection() {
-  /*
-    previousTeams is ordered newest -> oldest.
-
-    Example:
-
-    previousTeams = [
-      { year: "2026", ... },
-      { year: "2025", ... },
-      { year: "2024", ... },
-    ];
-
-    The newest previous batch is automatically selected.
-  */
-
   const [selectedPreviousYear, setSelectedPreviousYear] = useState(
     previousTeams[0]?.year ?? ""
   );
@@ -340,48 +366,37 @@ export function TeamSection() {
 
   return (
     <>
-      {/* =====================================================
-          Faculty Advisor
-      ====================================================== */}
+      {/* Team Page Hero */}
+      <TeamHero />
 
+      {/* Faculty Advisor */}
       <FacultyAdvisor />
 
-      {/* =====================================================
-          Current Unit Leaders
-      ====================================================== */}
-
+      {/* Current Unit Leaders */}
       <section
         id="team"
         className="py-16 sm:py-24"
         aria-label="Current NSS unit leaders"
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          {/* Section Header */}
           <div className="mb-12 text-center">
-
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
               Unit Leaders
             </h2>
           </div>
 
-          {/* Current Team */}
           <TeamContent team={currentTeam} />
         </div>
       </section>
 
-      {/* =====================================================
-          Previous Unit Leaders
-      ====================================================== */}
-
+      {/* Previous Unit Leaders */}
       {previousTeams.length > 0 && (
         <section
           className="border-t bg-surface py-16 sm:py-24"
           aria-label="Previous NSS unit leaders"
         >
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            {/* Section Header */}
             <div className="mb-10 text-center">
-
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
                 Previous Unit Leaders
               </h2>

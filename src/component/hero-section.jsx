@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "@/component/ui/button";
-import { ChevronDown, Heart, Sparkles } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
@@ -13,10 +13,10 @@ export function HeroSection() {
       className="relative isolate overflow-hidden bg-background"
       aria-label="National Service Scheme"
     >
-      {/* Background Pattern */}
+      {/* Background Pattern - reduced opacity so photo remains visible */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 opacity-50"
+        className="absolute inset-0 z-10 opacity-20"
         style={{
           backgroundImage:
             "radial-gradient(circle at 1px 1px, hsl(var(--primary) / 0.12) 1px, transparent 0)",
@@ -27,7 +27,7 @@ export function HeroSection() {
       {/* Soft Background Gradients */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,hsl(var(--primary)/0.12),transparent_28%),radial-gradient(circle_at_82%_72%,hsl(var(--brand-nature)/0.12),transparent_28%)]"
+        className="absolute inset-0 z-10 bg-[radial-gradient(circle_at_18%_20%,hsl(var(--primary)/0.08),transparent_28%),radial-gradient(circle_at_82%_72%,hsl(var(--brand-nature)/0.08),transparent_28%)]"
       />
 
       {/* Floating Decorative Elements */}
@@ -42,7 +42,7 @@ export function HeroSection() {
           duration: 9,
           ease: "easeInOut",
         }}
-        className="absolute -right-28 top-24 h-72 w-72 rounded-full bg-primary/10 blur-[100px]"
+        className="absolute -right-28 top-24 z-10 h-72 w-72 rounded-full bg-primary/10 blur-[100px]"
       />
 
       <motion.div
@@ -56,11 +56,12 @@ export function HeroSection() {
           duration: 11,
           ease: "easeInOut",
         }}
-        className="absolute -bottom-32 -left-20 h-80 w-80 rounded-full bg-brand-nature/10 blur-[110px]"
+        className="absolute -bottom-32 -left-20 z-10 h-80 w-80 rounded-full bg-brand-nature/10 blur-[110px]"
       />
 
       {/* Hero Content */}
-      <div className="relative z-10 mx-auto max-w-5xl px-4 py-24 text-center sm:px-6 lg:py-32">
+      <div className="relative z-20 mx-auto max-w-5xl px-4 py-24 text-center sm:px-6 lg:py-32">
+
         {/* Eyebrow */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -91,24 +92,17 @@ export function HeroSection() {
           {homeContent.hero.description}
         </motion.p>
 
-        {/* Actions */}
+        {/* Only Explore Events Button */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex flex-col items-center justify-center gap-4 sm:flex-row"
+          className="flex justify-center"
         >
-          <Button size="lg" asChild className="w-full sm:w-auto">
-            <Link to={homeContent.hero.primaryAction.href}>
-              {homeContent.hero.primaryAction.label}
-            </Link>
-          </Button>
-
           <Button
             size="lg"
-            variant="outline"
             asChild
-            className="w-full sm:w-auto"
+            className="min-w-[180px]"
           >
             <Link to={homeContent.hero.secondaryAction.href}>
               {homeContent.hero.secondaryAction.label}
@@ -116,27 +110,6 @@ export function HeroSection() {
           </Button>
         </motion.div>
 
-        {/* Highlights */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.65 }}
-          className="mt-14 flex flex-wrap justify-center gap-3 text-sm text-muted-foreground"
-        >
-          {homeContent.hero.highlights[0] && (
-            <span className="inline-flex items-center gap-2 rounded-full border bg-card px-4 py-2 shadow-sm">
-              <Heart className="h-4 w-4 text-brand-service" />
-              {homeContent.hero.highlights[0]}
-            </span>
-          )}
-
-          {homeContent.hero.highlights[1] && (
-            <span className="inline-flex items-center gap-2 rounded-full border bg-card px-4 py-2 shadow-sm">
-              <Sparkles className="h-4 w-4 text-brand-nature" />
-              {homeContent.hero.highlights[1]}
-            </span>
-          )}
-        </motion.div>
       </div>
 
       {/* Scroll Indicator */}
@@ -157,7 +130,7 @@ export function HeroSection() {
             duration: 2,
           },
         }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-muted-foreground/50 transition-colors hover:text-foreground"
+        className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2 text-muted-foreground/50 transition-colors hover:text-foreground"
         aria-label="Scroll to about section"
       >
         <ChevronDown className="h-6 w-6" />

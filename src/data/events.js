@@ -1,89 +1,139 @@
 export const events = [
   {
+    slug: "international-yoga-day-2024",
+
+    title: "International Yoga Day",
+
+    description:
+      "A day dedicated to promoting physical, mental, and spiritual well-being through the practice of yoga.",
+
+    startDate: "2024-06-21",
+
+    venue: "NIT Durgapur",
+
+    status: "completed",
+
+    category: "Health & Wellness",
+
+    image: "/images/events/yoga/poster.jpg",
+
+    why:
+      "To promote physical, mental, and spiritual well-being among students through the ancient practice of yoga and encourage a healthy lifestyle.",
+
+    about:
+      "International Yoga Day is celebrated globally to recognize the holistic benefits of yoga in achieving complete wellness. NSS at NIT Durgapur organized this event to foster an appreciation for this centuries-old practice among the student community.",
+
+    activities: [
+      "Participants demonstrated various yoga postures and techniques",
+      "Interactive sessions on the practice and discipline of yoga",
+      "Students shared their understanding of yoga benefits",
+      "Healthy lifestyle awareness discussions were conducted",
+      "A quiz on yoga was organized",
+    ],
+
+    photos: [
+      "/images/events/yoga/photo-1.jpg",
+      "/images/events/yoga/photo-2.jpg",
+      "/images/events/yoga/photo-3.jpg",
+      "/images/events/yoga/photo-4.jpg",
+    ],
+
+    videos: [
+      "/videos/yoga/yoga-day.mp4",
+    ],
+  },
+
+
+  {
     slug: "republic-day-celebration-2026",
+
     title: "Republic Day Celebration & Community Service",
+
     description:
       "A flag hoisting ceremony followed by a village cleanliness drive, cultural performances, and tree planting.",
+
     startDate: "2026-01-26",
+
     venue: "NIT Durgapur Campus & Bidhannagar Village",
+
     status: "completed",
-    outcome:
-      "80+ volunteers participated, 30 trees were planted, and a 2 km village-road cleanup was completed.",
-    initiativeSlug: "swachh-bharat",
+
+    category: "Community Service",
+
+    image: "/images/events/republic-day/poster.jpg",
+
+    why:
+      "To celebrate the spirit of the Indian Constitution while encouraging students to actively contribute towards community development.",
+
+    about:
+      "NSS NIT Durgapur celebrated Republic Day through a combination of patriotic activities and community service initiatives. Volunteers participated in the flag hoisting ceremony and later worked together on cleanliness and plantation activities.",
+
+    activities: [
+      "Flag hoisting ceremony",
+      "Village cleanliness drive",
+      "Cultural performances",
+      "Tree plantation activity",
+      "Community interaction sessions",
+    ],
+
+    photos: [
+      "/images/events/republic-day/photo-1.jpg",
+      "/images/events/republic-day/photo-2.jpg",
+      "/images/events/republic-day/photo-3.jpg",
+    ],
+
+    videos: [],
   },
+
 
   {
     slug: "blood-donation-camp-feb-2026",
+
     title: "Spring Semester Blood Donation Camp",
+
     description:
-      "A medically supervised blood donation camp in partnership with Durgapur Government Hospital Blood Bank.",
+      "A medically supervised blood donation camp organized to encourage voluntary blood donation.",
+
     startDate: "2026-02-15",
+
     venue: "NIT Durgapur Student Activity Centre",
-    status: "completed",
-    outcome:
-      "187 units collected from 210 registered donors, including 78 first-time donors.",
-    initiativeSlug: "blood-donation",
-  },
 
-  {
-    slug: "medical-camp-2026",
-    title: "Annual Free Medical Camp",
-    description:
-      "Free health screenings, consultations, medicine distribution, and government-healthcare referrals.",
-    startDate: "2026-03-08",
-    venue: "NIT Durgapur Community Hall",
     status: "completed",
-    outcome:
-      "320+ community members screened and 150+ medicine packets distributed.",
-    initiativeSlug: "medical-camp",
-  },
 
-  {
-    slug: "world-environment-day-2026",
-    title: "World Environment Day: Plantation & Awareness Drive",
-    description:
-      "An expert climate-action talk, plantation drive, and exhibition of student sustainability projects.",
-    startDate: "2026-06-05",
-    venue: "NIT Durgapur Campus",
-    status: "completed",
-    outcome:
-      "200+ saplings planted; 15 student projects exhibited; 500+ participants signed the pledge.",
-    initiativeSlug: "plantation-drive",
-  },
+    category: "Healthcare",
 
-  {
-    slug: "independence-day-2026",
-    title: "Independence Day Observance & Village Outreach",
-    description:
-      "Flag hoisting, youth-in-nation-building discussions, and afternoon education activities in nearby villages.",
-    startDate: "2026-08-15",
-    venue: "NIT Durgapur Campus & Surrounding Villages",
-    status: "registration_open",
-    registrationLink:
-      "mailto:nss@nitdgp.ac.in?subject=Independence%20Day%20Outreach%20Registration",
-    initiativeSlug: "education-support",
-  },
+    image: "/images/events/blood-donation/poster.jpg",
 
-  {
-    slug: "winter-clothing-drive-2025",
-    title: "Annual Winter Clothing Distribution",
-    description:
-      "A campus-wide collection and distribution drive for identified families in Durgapur communities.",
-    startDate: "2025-12-20",
-    venue: "NIT Durgapur & surrounding communities",
-    status: "completed",
-    outcome:
-      "520+ clothing items distributed to 120+ families by 45 volunteers.",
-    initiativeSlug: "clothing-distribution",
+    why:
+      "To encourage voluntary blood donation and contribute towards supporting patients and healthcare services that require regular blood supply.",
+
+    about:
+      "The blood donation camp was organized with medical supervision to ensure a safe and smooth donation process. Students, faculty members, and volunteers came together to contribute to this important healthcare initiative.",
+
+    activities: [
+      "Donor registration",
+      "Medical screening",
+      "Voluntary blood donation",
+      "Awareness sessions for first-time donors",
+      "Volunteer coordination and support",
+    ],
+
+    photos: [
+      "/images/events/blood-donation/photo-1.jpg",
+      "/images/events/blood-donation/photo-2.jpg",
+      "/images/events/blood-donation/photo-3.jpg",
+    ],
+
+    videos: [],
   },
 ];
 
+
 export const eventsSectionContent = {
   eyebrow: "Activities",
+
   title: "Events & Programmes",
-  filters: {
-    all: "All",
-    registration_open: "Open for Registration",
-    completed: "Completed",
-  },
+
+  description:
+    "Explore the initiatives, campaigns and activities organized by NSS NIT Durgapur.",
 };

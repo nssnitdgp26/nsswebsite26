@@ -5,13 +5,18 @@ import { PageShell } from "@/component/page-shell";
 
 import Home from "@/pages/Home";
 import Events from "@/pages/Events";
+import EventDetails from "@/pages/event-details";
 import Team from "@/pages/Team";
 import Contact from "@/pages/Contact";
+
+import { ScrollToTop } from "@/component/ScrollToTop";
+
 
 function NotFound() {
   return (
     <PageShell>
       <main className="mx-auto flex min-h-[60vh] max-w-3xl flex-col items-center justify-center px-4 py-20 text-center">
+
         <p className="text-sm font-semibold uppercase tracking-widest text-primary">
           404
         </p>
@@ -30,53 +35,79 @@ function NotFound() {
         >
           Return Home
         </Link>
+
       </main>
     </PageShell>
   );
 }
 
+
 function App() {
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <PageShell>
-            <Home />
-          </PageShell>
-        }
-      />
+    <>
+      <ScrollToTop />
 
-      <Route
-        path="/events"
-        element={
-          <PageShell>
-            <Events />
-          </PageShell>
-        }
-      />
+      <Routes>
 
-      <Route
-        path="/team"
-        element={
-          <PageShell>
-            <Team />
-          </PageShell>
-        }
-      />
+        <Route
+          path="/"
+          element={
+            <PageShell>
+              <Home />
+            </PageShell>
+          }
+        />
 
-      <Route
-        path="/contact"
-        element={
-          <PageShell>
-            <Contact />
-          </PageShell>
-        }
-      />
 
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+        <Route
+          path="/events"
+          element={
+            <PageShell>
+              <Events />
+            </PageShell>
+          }
+        />
+
+
+        <Route
+          path="/events/:slug"
+          element={
+            <PageShell>
+              <EventDetails />
+            </PageShell>
+          }
+        />
+
+
+        <Route
+          path="/team"
+          element={
+            <PageShell>
+              <Team />
+            </PageShell>
+          }
+        />
+
+
+        <Route
+          path="/contact"
+          element={
+            <PageShell>
+              <Contact />
+            </PageShell>
+          }
+        />
+
+
+        <Route
+          path="*"
+          element={<NotFound />}
+        />
+
+      </Routes>
+    </>
   );
 }
+
 
 export default App;

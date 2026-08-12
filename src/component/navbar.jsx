@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const navItems = [
@@ -22,6 +22,36 @@ const navItems = [
 
 export function Navbar() {
   const location = useLocation();
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const updateScrollProgress = () => {
+      const scrollTop = window.scrollY;
+      const documentHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+
+      if (documentHeight <= 0) {
+        setScrollProgress(0);
+        return;
+      }
+
+      const progress = (scrollTop / documentHeight) * 100;
+      setScrollProgress(Math.min(progress, 100));
+    };
+
+    updateScrollProgress();
+
+    window.addEventListener("scroll", updateScrollProgress, {
+      passive: true,
+    });
+
+    window.addEventListener("resize", updateScrollProgress);
+
+    return () => {
+      window.removeEventListener("scroll", updateScrollProgress);
+      window.removeEventListener("resize", updateScrollProgress);
+    };
+  }, [location.pathname]);
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/70 bg-background/95 backdrop-blur-md">
@@ -75,6 +105,19 @@ export function Navbar() {
             );
           })}
         </nav>
+      </div>
+
+      {/* Scroll Progress Bar */}
+      {/* Scroll Progress Bar */}
+      <div className="absolute bottom-0 left-0 h-[2px] w-full overflow-hidden">
+        <div
+          className="h-full transition-[width] duration-150 ease-out"
+          style={{
+            width: `${scrollProgress}%`,
+            background:
+              "linear-gradient(90deg, #2563eb 0%, #06b6d4 25%, #8b5cf6 55%, #ec4899 80%, #2563eb 100%)",
+          }}
+        />
       </div>
     </header>
   );
