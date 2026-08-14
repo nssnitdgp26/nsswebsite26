@@ -5,7 +5,7 @@ import {
   useTransform,
   useSpring,
 } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Landmark, MapPinned, School } from "lucide-react";
 
 import { aboutContent } from "@/data/about";
 import { HomeHero } from "@/component/home-hero";
@@ -66,6 +66,56 @@ function Home() {
       ====================================================== */}
 
       <HomeHero />
+
+      <section className="relative overflow-hidden bg-slate-950 px-4 py-16 text-white sm:px-6 sm:py-20 lg:px-8">
+        <div className="pointer-events-none absolute -right-24 top-1/2 h-96 w-96 -translate-y-1/2 rounded-full border border-white/10" />
+        <div className="pointer-events-none absolute -right-10 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full border border-primary/40" />
+
+        <div className="relative mx-auto max-w-7xl">
+          <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-center lg:gap-20">
+            <motion.div
+              initial={{ opacity: 0, x: -24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6 }}
+            >
+              <p className="text-xs font-bold uppercase tracking-[0.22em] text-primary">Where service happens</p>
+              <h2 className="mt-5 max-w-md text-4xl font-bold leading-[1.02] tracking-tight sm:text-5xl">
+                One spirit.<br />
+                <span className="text-white/45">Many places to show up.</span>
+              </h2>
+              <p className="mt-6 max-w-md text-base leading-8 text-white/65">
+                Every NSS initiative starts close to home, reaches beyond campus, and returns with a stronger sense of shared responsibility.
+              </p>
+            </motion.div>
+
+            <div className="relative grid gap-3 sm:grid-cols-3 sm:gap-4">
+              {[
+                { icon: School, number: "01", title: "Campus", text: "Students turning awareness into everyday action." },
+                { icon: MapPinned, number: "02", title: "Community", text: "Volunteers listening, learning and working alongside people." },
+                { icon: Landmark, number: "03", title: "Country", text: "Service shaped by civic responsibility and national purpose." },
+              ].map(({ icon: Icon, number, title, text }, index) => (
+                <motion.article
+                  key={title}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ y: -6 }}
+                  className="group relative min-h-56 overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm transition-colors hover:border-primary/60 hover:bg-white/10 sm:min-h-72 sm:p-6"
+                >
+                  <span className="text-xs font-bold tracking-[0.18em] text-white/35">{number}</span>
+                  <div className="mt-8 flex h-11 w-11 items-center justify-center rounded-xl border border-primary/40 bg-primary/15 text-primary transition-transform duration-300 group-hover:scale-110">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="mt-6 text-xl font-bold tracking-tight">{title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-white/60">{text}</p>
+                </motion.article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* =====================================================
           ABOUT
@@ -460,7 +510,6 @@ function Home() {
               className="group inline-flex items-center gap-3 text-sm font-semibold text-slate-900 transition-colors hover:text-primary"
             >
               View all events
-
               <span className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 transition-all duration-300 group-hover:border-primary group-hover:bg-primary group-hover:text-white">
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </span>
