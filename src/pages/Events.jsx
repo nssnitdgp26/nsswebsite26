@@ -6,7 +6,7 @@ import {
   MapPin,
   Sparkles,
 } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { events, eventsSectionContent } from "@/data/events";
 
@@ -29,47 +29,181 @@ function formatDate(date) {
    EVENTS HERO
 ========================================================= */
 
-function EventsHero({ eventCount, featuredEvent }) {
+function EventsHero({ eventCount }) {
   return (
-    <section className="relative isolate overflow-hidden bg-slate-950 text-white">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_80%_20%,rgba(23,63,115,.65),transparent_28rem),linear-gradient(120deg,#071426,#102a4d)]" />
-      <div className="absolute -left-24 bottom-0 -z-10 h-72 w-72 rounded-full bg-primary/25 blur-3xl" />
+    <section className="relative overflow-hidden border-b border-white/5 bg-slate-900 text-white">
 
-      <div className="relative mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[1fr_.8fr] lg:items-end lg:gap-16 lg:px-8 lg:py-24">
-        <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-          <div className="flex items-center gap-2 text-primary">
-            <Sparkles className="h-4 w-4" />
-            <p className="text-xs font-bold uppercase tracking-[0.2em]">{eventsSectionContent.eyebrow || "NSS NIT Durgapur"}</p>
-          </div>
+      {/* BACKGROUND GLOW */}
 
-          <h1 className="mt-6 max-w-3xl text-5xl font-bold leading-[.96] tracking-tight sm:text-6xl lg:text-7xl">
-            Moments that <span className="text-primary">move</span> people.
-          </h1>
+      <motion.div
+        animate={{
+          x: [0, 80, 0],
+          y: [0, 40, 0],
+          scale: [1, 1.15, 1],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute -left-32 -top-32 h-96 w-96 rounded-full bg-primary/20 blur-3xl"
+      />
 
-          <p className="mt-7 max-w-xl text-base leading-8 text-white/70 sm:text-lg">
-            {eventsSectionContent.description}
-          </p>
 
-          <div className="mt-10 flex items-center gap-4 border-l-2 border-primary pl-4">
-            <p className="text-3xl font-bold">{eventCount}</p>
-            <p className="text-xs font-semibold uppercase tracking-[0.15em] text-white/55">Stories of service,<br />action and community</p>
-          </div>
-        </motion.div>
+      <motion.div
+        animate={{
+          x: [0, -70, 0],
+          y: [0, -30, 0],
+          scale: [1.1, 0.9, 1.1],
+        }}
+        transition={{
+          duration: 12,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute -bottom-40 -right-32 h-[30rem] w-[30rem] rounded-full bg-primary/10 blur-3xl"
+      />
 
-        {featuredEvent && (
-          <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.7, delay: 0.1 }} className="relative mx-auto w-full max-w-md lg:mr-0">
-            <div className="absolute -inset-3 rounded-[2rem] bg-primary/25 blur-2xl" />
-            <Link to={`/events/${featuredEvent.slug}`} className="group relative block overflow-hidden rounded-[1.5rem] border border-white/15 bg-slate-900 shadow-2xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
-              <div className="aspect-[5/4] overflow-hidden bg-slate-800">
-                {featuredEvent.image && <img src={featuredEvent.image} alt={featuredEvent.title} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />}
-              </div>
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950 via-slate-950/75 to-transparent px-5 pb-5 pt-20">
-                <p className="text-xs font-bold uppercase tracking-[0.16em] text-primary">Latest event · {formatDate(featuredEvent.startDate)}</p>
-                <p className="mt-2 text-xl font-bold leading-tight text-white">{featuredEvent.title}</p>
-              </div>
-            </Link>
+
+      {/* FLOATING DECORATIVE CIRCLES */}
+
+      <motion.div
+        animate={{
+          y: [0, -18, 0],
+          rotate: [0, 10, 0],
+        }}
+        transition={{
+          duration: 6,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute right-[10%] top-[18%] h-14 w-14 rounded-full border border-white/10"
+      />
+
+
+      <motion.div
+        animate={{
+          y: [0, 25, 0],
+          x: [0, 15, 0],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute bottom-[18%] right-[25%] h-5 w-5 rounded-full bg-primary/60"
+      />
+
+
+      <motion.div
+        animate={{
+          rotate: [0, 180, 360],
+        }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+        className="absolute right-[8%] top-[40%] h-24 w-24 border border-white/5"
+      />
+
+
+      <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24 lg:px-8 lg:py-28">
+
+        <div className="max-w-4xl">
+
+          {/* EYEBROW */}
+
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex items-center gap-2"
+          >
+            <Sparkles className="h-4 w-4 text-primary" />
+
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/70">
+              {eventsSectionContent.eyebrow || "NSS NIT Durgapur"}
+            </p>
+
           </motion.div>
-        )}
+
+
+          {/* TITLE */}
+
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.7,
+              delay: 0.1,
+            }}
+            className="mt-6 text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl"
+          >
+            {eventsSectionContent.title}
+          </motion.h1>
+
+
+          {/* DESCRIPTION */}
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.6,
+              delay: 0.25,
+            }}
+            className="mt-7 max-w-3xl text-base leading-8 text-white/65 sm:text-lg"
+          >
+            {eventsSectionContent.description}
+          </motion.p>
+
+
+          {/* HERO BOTTOM INFO */}
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.5,
+              delay: 0.4,
+            }}
+            className="mt-10 flex flex-wrap items-center gap-4"
+          >
+
+            <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-5 py-4 backdrop-blur-sm">
+
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+                <CalendarDays className="h-5 w-5" />
+              </div>
+
+              <div>
+
+                <p className="text-2xl font-bold text-white">
+                  {eventCount}+
+                </p>
+
+                <p className="text-xs font-medium uppercase tracking-wide text-white/50">
+                  Events & Initiatives
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div className="flex items-center gap-2 text-sm text-white/55">
+
+              <span className="h-2 w-2 animate-pulse rounded-full bg-primary" />
+
+              Creating impact through action
+
+            </div>
+
+          </motion.div>
+
+        </div>
+
       </div>
 
     </section>
@@ -82,13 +216,6 @@ function EventsHero({ eventCount, featuredEvent }) {
 ========================================================= */
 
 function EventCard({ event, index }) {
-  const navigate = useNavigate();
-
-  function openEvent(target) {
-    if (target.closest("a")) return;
-    navigate(`/events/${event.slug}`);
-  }
-
   return (
     <motion.article
       initial={{
@@ -110,41 +237,26 @@ function EventCard({ event, index }) {
       whileHover={{
         y: -6,
       }}
-      onClick={(clickEvent) => openEvent(clickEvent.target)}
-      onKeyDown={(keyEvent) => {
-        if (keyEvent.key === "Enter" || keyEvent.key === " ") {
-          keyEvent.preventDefault();
-          openEvent(keyEvent.target);
-        }
-      }}
-      tabIndex={0}
-      aria-label={`Open ${event.title}`}
       className="
         group
         flex
         flex-col
-        cursor-pointer
         overflow-hidden
         rounded-2xl
         border
         border-slate-200
         bg-white
         shadow-sm
-        transition-all
+        transition-shadow
         duration-300
-        will-change-transform
         hover:border-primary/30
         hover:shadow-xl
-        hover:shadow-slate-900/10
-        focus-visible:outline-2
-        focus-visible:outline-offset-4
-        focus-visible:outline-primary
       "
     >
 
       {/* EVENT POSTER */}
 
-      <div className="relative aspect-[16/10] overflow-hidden bg-slate-200">
+      <div className="relative aspect-[4/3] overflow-hidden bg-slate-200">
 
         {event.image ? (
           <img
@@ -188,19 +300,14 @@ function EventCard({ event, index }) {
 
       {/* CARD CONTENT */}
 
-      <div className="flex flex-1 flex-col p-5 sm:p-6">
+      <div className="flex flex-1 flex-col p-6">
 
-        <div className="flex items-center justify-between text-xs font-bold uppercase tracking-[0.16em] text-slate-400">
-          <span>Event {String(index + 1).padStart(2, "0")}</span>
-          <span className="text-primary">NSS NITD</span>
-        </div>
-
-        <h2 className="mt-4 text-xl font-bold tracking-tight text-slate-900 transition-colors duration-300 group-hover:text-primary sm:text-2xl">
+        <h2 className="text-xl font-bold tracking-tight text-slate-900 transition-colors duration-300 group-hover:text-primary sm:text-2xl">
           {event.title}
         </h2>
 
 
-        <p className="mt-3 line-clamp-3 text-sm leading-6 text-slate-600 sm:leading-7">
+        <p className="mt-3 line-clamp-3 text-sm leading-7 text-slate-600">
           {event.description}
         </p>
 
@@ -214,7 +321,7 @@ function EventCard({ event, index }) {
 
               <CalendarDays className="h-4 w-4 shrink-0 text-primary" />
 
-              <span className="font-medium text-slate-600">
+              <span>
                 {formatDate(event.startDate)}
               </span>
 
@@ -227,7 +334,7 @@ function EventCard({ event, index }) {
 
               <MapPin className="h-4 w-4 shrink-0 text-primary" />
 
-              <span className="line-clamp-1 font-medium text-slate-600">
+              <span className="line-clamp-1">
                 {event.venue}
               </span>
 
@@ -241,8 +348,7 @@ function EventCard({ event, index }) {
 
         <Link
           to={`/events/${event.slug}`}
-          aria-label={`View details for ${event.title}`}
-          className="group/button mt-7 inline-flex min-h-11 items-center justify-between gap-2 border-t border-slate-100 pt-4 text-sm font-semibold text-slate-900 transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary hover:text-primary"
+          className="group/button mt-7 inline-flex items-center gap-2 self-start text-sm font-semibold text-slate-900 transition-colors hover:text-primary"
         >
 
           View Event
@@ -279,7 +385,7 @@ function Events() {
 
       {/* HERO */}
 
-      <EventsHero eventCount={sortedEvents.length} featuredEvent={sortedEvents[0]} />
+      <EventsHero eventCount={sortedEvents.length} />
 
 
       {/* EVENTS SECTION */}
@@ -308,17 +414,18 @@ function Events() {
           >
 
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-              The archive
+              Event Archive
             </p>
 
 
             <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-              Every event leaves a mark.
+              Explore Our Initiatives
             </h2>
 
 
             <p className="mt-4 max-w-2xl text-base leading-7 text-slate-600">
-              Explore the drives, campaigns and shared experiences led by our volunteers.
+              Discover the events, campaigns, awareness drives, and
+              community initiatives organised by NSS NIT Durgapur.
             </p>
 
           </motion.div>
@@ -328,7 +435,7 @@ function Events() {
 
           {sortedEvents.length > 0 ? (
 
-            <div className="grid gap-5 sm:gap-6 md:grid-cols-2 xl:grid-cols-3">
+            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
 
               {sortedEvents.map((event, index) => (
 

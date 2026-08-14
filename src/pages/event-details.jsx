@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import {
   ArrowLeft,
@@ -8,9 +8,6 @@ import {
   Images,
   Play,
   Sparkles,
-  X,
-  ChevronLeft,
-  ChevronRight,
 } from "lucide-react";
 
 import { Link, useParams } from "react-router-dom";
@@ -31,18 +28,6 @@ function formatDate(date) {
   );
 }
 
-function getEmbedUrl(video) {
-  if (typeof video !== "string") return null;
-
-  if (video.includes("youtube.com/embed/")) return video;
-
-  const match = video.match(
-    /(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{11})/
-  );
-
-  return match ? `https://www.youtube.com/embed/${match[1]}` : null;
-}
-
 
 /* =========================================================
    EVENT DETAILS
@@ -50,36 +35,10 @@ function getEmbedUrl(video) {
 
 function EventDetails() {
   const { slug } = useParams();
-  const [activePhoto, setActivePhoto] = useState(null);
 
   const event = events.find(
     (item) => item.slug === slug
   );
-
-  useEffect(() => {
-    setActivePhoto(null);
-  }, [slug]);
-
-  useEffect(() => {
-    if (activePhoto === null) return undefined;
-
-    function handleKeyDown(eventKey) {
-      if (eventKey.key === "Escape") setActivePhoto(null);
-      if (eventKey.key === "ArrowLeft") {
-        setActivePhoto((current) =>
-          current === 0 ? event.photos.length - 1 : current - 1
-        );
-      }
-      if (eventKey.key === "ArrowRight") {
-        setActivePhoto((current) =>
-          current === event.photos.length - 1 ? 0 : current + 1
-        );
-      }
-    }
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [activePhoto, event]);
 
 
   /* =========================================================
@@ -112,97 +71,150 @@ function EventDetails() {
 
 
   return (
-    <main className="min-w-0 overflow-hidden bg-slate-100 text-slate-900">
+    <main className="overflow-hidden bg-slate-100 text-slate-900">
 
 
       {/* =====================================================
           HERO
       ===================================================== */}
 
-      <section className="relative isolate overflow-hidden bg-slate-950 text-white">
+      <section className="relative overflow-hidden bg-slate-900 text-white">
 
-        {event.image && (
-          <img
-            src={event.image}
-            alt=""
-            className="absolute inset-0 -z-20 h-full w-full object-cover opacity-30"
-          />
-        )}
 
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(105deg,rgba(2,12,27,.98)_12%,rgba(9,28,55,.92)_55%,rgba(2,12,27,.72))]" />
-        <div className="absolute -right-28 top-16 -z-10 h-80 w-80 rounded-full bg-primary/25 blur-3xl" />
+        {/* Decorative Background */}
 
-        <div className="relative mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
+        <div className="absolute inset-0 opacity-40">
+          <div className="absolute -right-32 -top-32 h-96 w-96 rounded-full bg-primary/20 blur-3xl" />
+
+          <div className="absolute -bottom-40 left-0 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
+        </div>
+
+
+        <div className="relative mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+
+
+          {/* Back */}
+
           <Link
             to="/events"
-            className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 text-sm font-semibold text-white/85 backdrop-blur-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white hover:bg-white/10 hover:text-white"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-white/60 transition-colors hover:text-white"
           >
             <ArrowLeft className="h-4 w-4" />
-            All events
+            Back to Events
           </Link>
 
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-4xl pb-5 pt-14 sm:pb-8 sm:pt-20 lg:max-w-[56%]"
-          >
-            {event.category && (
-              <p className="inline-flex rounded-full border border-primary/40 bg-primary/15 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.16em] text-white">
-                {event.category}
-              </p>
-            )}
 
-            <h1 className="mt-5 max-w-4xl break-words text-4xl font-bold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
-              {event.title}
-            </h1>
+          <div className="mt-10 grid gap-12 lg:grid-cols-[1fr_0.9fr] lg:items-center">
 
-            <p className="mt-6 max-w-2xl text-base leading-8 text-white/75 sm:text-lg">
-              {event.description}
-            </p>
-          </motion.div>
 
-          {event.image && (
-            <motion.figure
-              initial={{ opacity: 0, x: 28, rotate: 2 }}
-              animate={{ opacity: 1, x: 0, rotate: 0 }}
-              transition={{ duration: 0.7, delay: 0.15 }}
-              className="absolute right-8 top-32 hidden w-[29%] max-w-sm lg:block"
+            {/* Hero Content */}
+
+            <motion.div
+              initial={{ opacity: 0, x: -25 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
             >
-              <div className="relative overflow-hidden rounded-[1.75rem] border border-white/20 bg-slate-800 p-2 shadow-2xl shadow-black/40">
-                <img
-                  src={event.image}
-                  alt={`${event.title} event poster`}
-                  className="aspect-[4/5] w-full rounded-[1.3rem] object-cover"
-                />
-                <div className="absolute inset-x-2 bottom-2 rounded-b-[1.3rem] bg-gradient-to-t from-slate-950/90 to-transparent px-5 pb-5 pt-16">
-                  <p className="text-xs font-bold uppercase tracking-[0.17em] text-primary">NSS NIT Durgapur</p>
-                  <p className="mt-1 text-sm font-semibold text-white">Event journal</p>
-                </div>
-              </div>
-            </motion.figure>
-          )}
 
-          <div className="grid max-w-3xl gap-px overflow-hidden rounded-2xl border border-white/15 bg-white/15 sm:grid-cols-2 lg:max-w-[56%]">
-            <div className="flex items-center gap-4 bg-slate-950/65 px-5 py-4 backdrop-blur-sm">
-              <CalendarDays className="h-5 w-5 shrink-0 text-primary" />
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/50">When</p>
-                <p className="mt-1 text-sm font-semibold text-white">{formatDate(event.startDate)}</p>
-              </div>
-            </div>
 
-            {event.venue && (
-              <div className="flex min-w-0 items-center gap-4 bg-slate-950/65 px-5 py-4 backdrop-blur-sm">
-                <MapPin className="h-5 w-5 shrink-0 text-primary" />
-                <div className="min-w-0">
-                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/50">Where</p>
-                  <p className="mt-1 truncate text-sm font-semibold text-white">{event.venue}</p>
+              {event.category && (
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary-foreground/80">
+                  {event.category}
+                </p>
+              )}
+
+
+              <h1 className="mt-4 max-w-3xl text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
+                {event.title}
+              </h1>
+
+
+              <div className="mt-7 h-px w-20 bg-primary" />
+
+
+              <p className="mt-7 max-w-2xl text-base leading-8 text-white/65 sm:text-lg">
+                {event.description}
+              </p>
+
+
+              {/* Event Meta */}
+
+              <div className="mt-10 grid gap-4 sm:grid-cols-2">
+
+
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
+                  <CalendarDays className="h-5 w-5 text-primary" />
+
+                  <p className="mt-4 text-xs font-semibold uppercase tracking-[0.15em] text-white/40">
+                    Date
+                  </p>
+
+                  <p className="mt-1 text-sm font-semibold text-white">
+                    {formatDate(event.startDate)}
+                  </p>
                 </div>
+
+
+                {event.venue && (
+                  <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
+                    <MapPin className="h-5 w-5 text-primary" />
+
+                    <p className="mt-4 text-xs font-semibold uppercase tracking-[0.15em] text-white/40">
+                      Venue
+                    </p>
+
+                    <p className="mt-1 text-sm font-semibold leading-6 text-white">
+                      {event.venue}
+                    </p>
+                  </div>
+                )}
+
               </div>
+
+            </motion.div>
+
+
+            {/* Poster */}
+
+            {event.image && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{
+                  duration: 0.7,
+                  delay: 0.1,
+                }}
+                className="mx-auto w-full max-w-xl"
+              >
+
+                <div className="relative">
+
+
+                  <div className="absolute -inset-4 rounded-[2rem] bg-primary/20 blur-2xl" />
+
+
+                  <div className="relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-slate-800 p-2 shadow-2xl">
+
+                    <div className="overflow-hidden rounded-xl bg-slate-950">
+
+                      <img
+                        src={event.image}
+                        alt={event.title}
+                        className="max-h-[650px] w-full object-cover"
+                      />
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </motion.div>
             )}
+
           </div>
+
         </div>
+
       </section>
 
 
@@ -211,20 +223,28 @@ function EventDetails() {
           EVENT STORY
       ===================================================== */}
 
-      <section className="bg-white px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
+      <section className="bg-white px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
 
-        <div className="mx-auto max-w-7xl">
+        <div className="mx-auto max-w-6xl">
 
-          <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
-              Event overview
-            </p>
-            <h2 className="mt-4 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
-              More than a day on the calendar.
-            </h2>
-          </div>
 
-          <div className="mt-10 min-w-0 space-y-12 sm:mt-14 sm:space-y-16">
+          <div className="grid gap-14 lg:grid-cols-[0.35fr_1fr]">
+
+
+            {/* Side Label */}
+
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
+                The Event
+              </p>
+
+              <div className="mt-5 h-px w-16 bg-primary" />
+            </div>
+
+
+            {/* Content */}
+
+            <div className="space-y-16">
 
 
               {/* WHY */}
@@ -251,11 +271,11 @@ function EventDetails() {
 
 
                   <h2 className="mt-5 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
-                    Why it matters
+                    Why We Conduct This Event
                   </h2>
 
 
-                  <p className="mt-6 max-w-4xl text-base leading-8 text-slate-600 sm:text-lg">
+                  <p className="mt-6 max-w-3xl text-base leading-8 text-slate-600 sm:text-lg">
                     {event.why}
                   </p>
 
@@ -287,11 +307,11 @@ function EventDetails() {
 
 
                   <h2 className="mt-5 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
-                    The story
+                    About The Event
                   </h2>
 
 
-                  <p className="mt-6 max-w-4xl text-base leading-8 text-slate-600 sm:text-lg">
+                  <p className="mt-6 max-w-3xl text-base leading-8 text-slate-600 sm:text-lg">
                     {event.about}
                   </p>
 
@@ -317,11 +337,11 @@ function EventDetails() {
 
 
                     <h2 className="mt-4 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
-                      On the day
+                      What Happens in This Event
                     </h2>
 
 
-                    <div className="mt-8 grid gap-3 md:grid-cols-2 md:gap-4">
+                    <div className="mt-8 grid gap-3">
 
                       {event.activities.map(
                         (activity, index) => (
@@ -341,7 +361,7 @@ function EventDetails() {
                               duration: 0.4,
                               delay: index * 0.06,
                             }}
-                            className="group flex items-start gap-4 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-5 transition-all hover:border-primary/30 hover:bg-white hover:shadow-lg hover:shadow-slate-200/60 sm:gap-5 sm:px-5"
+                            className="group flex items-start gap-5 rounded-xl border border-slate-200 bg-slate-50 px-5 py-5 transition-all hover:border-primary/30 hover:bg-white hover:shadow-md"
                           >
 
                             <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
@@ -366,6 +386,8 @@ function EventDetails() {
 
             </div>
 
+          </div>
+
         </div>
 
       </section>
@@ -379,7 +401,7 @@ function EventDetails() {
       {event.photos &&
         event.photos.length > 0 && (
 
-          <section className="bg-slate-900 px-4 py-16 text-white sm:px-6 sm:py-20 lg:px-8 lg:py-28">
+          <section className="bg-slate-900 px-4 py-20 text-white sm:px-6 lg:px-8 lg:py-28">
 
             <div className="mx-auto max-w-7xl">
 
@@ -415,7 +437,7 @@ function EventDetails() {
               </motion.div>
 
 
-              <div className="mt-10 grid gap-4 sm:mt-14 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
+              <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
 
                 {event.photos.map((photo, index) => (
 
@@ -437,16 +459,10 @@ function EventDetails() {
                       duration: 0.5,
                       delay: index * 0.06,
                     }}
-                    className="group relative overflow-hidden rounded-2xl border border-white/10 bg-slate-800 shadow-lg shadow-black/10 transition-all duration-300 hover:-translate-y-1 hover:border-white/25 hover:shadow-xl hover:shadow-black/20"
+                    className="group overflow-hidden rounded-2xl border border-white/10 bg-slate-800"
                   >
 
-                    <button
-                      type="button"
-                      onClick={() => setActivePhoto(index)}
-                      className="block w-full text-left focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-primary"
-                      aria-label={`View image ${index + 1} from ${event.title}`}
-                    >
-                    <div className="aspect-[4/3] overflow-hidden bg-slate-950">
+                    <div className="aspect-[4/3] overflow-hidden">
 
                       <img
                         src={photo}
@@ -456,10 +472,6 @@ function EventDetails() {
                       />
 
                     </div>
-                    <span className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent px-4 pb-4 pt-12 text-xs font-semibold uppercase tracking-[0.16em] text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100">
-                      View image {index + 1}
-                    </span>
-                    </button>
 
                   </motion.div>
 
@@ -482,7 +494,7 @@ function EventDetails() {
       {event.videos &&
         event.videos.length > 0 && (
 
-          <section className="border-t border-white/5 bg-slate-800 px-4 py-16 text-white sm:px-6 sm:py-20 lg:px-8 lg:py-28">
+          <section className="bg-slate-800 px-4 py-20 text-white sm:px-6 lg:px-8 lg:py-28">
 
             <div className="mx-auto max-w-6xl">
 
@@ -512,7 +524,7 @@ function EventDetails() {
               </div>
 
 
-              <div className="mt-10 grid gap-6 sm:mt-14">
+              <div className="mt-14 space-y-8">
 
                 {event.videos.map((video, index) => (
 
@@ -533,27 +545,18 @@ function EventDetails() {
                       duration: 0.5,
                       delay: index * 0.08,
                     }}
-                    className="overflow-hidden rounded-2xl border border-white/10 bg-black shadow-2xl shadow-black/20"
+                    className="overflow-hidden rounded-2xl border border-white/10 bg-black shadow-2xl"
                   >
-                    {getEmbedUrl(video) ? (
-                      <iframe
-                        src={getEmbedUrl(video)}
-                        title={`${event.title} video ${index + 1}`}
-                        className="aspect-video w-full"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowFullScreen
-                      />
-                    ) : (
-                      <video
-                        src={video}
-                        controls
-                        playsInline
-                        preload="metadata"
-                        className="block aspect-video w-full bg-black object-contain"
-                      >
-                        Your browser does not support the video tag.
-                      </video>
-                    )}
+
+                    <video
+                      src={video}
+                      controls
+                      playsInline
+                      preload="metadata"
+                      className="block max-h-[700px] w-full"
+                    >
+                      Your browser does not support the video tag.
+                    </video>
 
                   </motion.div>
 
@@ -568,53 +571,59 @@ function EventDetails() {
         )}
 
 
-      {activePhoto !== null && event.photos && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/95 p-4 sm:p-8"
-          role="dialog"
-          aria-modal="true"
-          aria-label={`${event.title} gallery image ${activePhoto + 1}`}
-          onClick={(clickEvent) => {
-            if (clickEvent.target === clickEvent.currentTarget) setActivePhoto(null);
+
+      {/* =====================================================
+          BOTTOM CTA
+      ===================================================== */}
+
+      <section className="bg-slate-100 px-4 py-20 sm:px-6 lg:px-8">
+
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: 20,
           }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+          }}
+          className="mx-auto max-w-5xl rounded-3xl bg-slate-900 px-7 py-12 text-center text-white shadow-xl sm:px-12 sm:py-16"
         >
-          <button
-            type="button"
-            onClick={() => setActivePhoto(null)}
-            className="absolute right-4 top-4 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white transition-colors hover:bg-white/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:right-8 sm:top-8"
-            aria-label="Close image viewer"
+
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/50">
+            NSS NIT Durgapur
+          </p>
+
+
+          <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
+            Explore more events and initiatives.
+          </h2>
+
+
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-white/60">
+            Discover the activities, campaigns, and community initiatives
+            conducted by NSS NIT Durgapur.
+          </p>
+
+
+          <Link
+            to="/events"
+            className="mt-8 inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 font-semibold text-primary-foreground transition-all hover:-translate-y-0.5 hover:shadow-lg"
           >
-            <X className="h-5 w-5" />
-          </button>
 
-          {event.photos.length > 1 && (
-            <>
-              <button
-                type="button"
-                onClick={() => setActivePhoto((current) => current === 0 ? event.photos.length - 1 : current - 1)}
-                className="absolute left-3 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white transition-colors hover:bg-white/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:left-8"
-                aria-label="Previous image"
-              >
-                <ChevronLeft className="h-6 w-6" />
-              </button>
-              <button
-                type="button"
-                onClick={() => setActivePhoto((current) => current === event.photos.length - 1 ? 0 : current + 1)}
-                className="absolute right-3 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white transition-colors hover:bg-white/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:right-8"
-                aria-label="Next image"
-              >
-                <ChevronRight className="h-6 w-6" />
-              </button>
-            </>
-          )}
+            <ArrowLeft className="h-4 w-4" />
 
-          <img
-            src={event.photos[activePhoto]}
-            alt={`${event.title} ${activePhoto + 1}`}
-            className="max-h-[82vh] max-w-full rounded-xl object-contain shadow-2xl"
-          />
-        </div>
-      )}
+            Explore More Events
+
+          </Link>
+
+        </motion.div>
+
+      </section>
+
 
     </main>
   );
