@@ -61,7 +61,7 @@ export const events = [
 
   category: "Health & Wellness",
 
-  image: "/images/events/anti-drug-day/poster.jpeg",
+  image: "/images/events/anti-drug-day/poster.png",
 
   why:
     "To raise awareness about the dangers of drug abuse and promote a healthy, drug-free lifestyle among students and the community.",
@@ -104,7 +104,7 @@ export const events = [
 
   category: "Education & Awareness",
 
-  image: "/images/events/national-space-day/poster.jpg",
+  image: "/images/events/national-space-day/poster.png",
 
   why:
     "To celebrate India's achievements in space exploration and inspire students to pursue careers in space science and technology.",
@@ -147,7 +147,7 @@ export const events = [
 
   category: "Community Service",
 
-  image: "/images/events/swachhata-pakhwada/poster.jpg",
+  image: "/images/events/swachhata-pakhwada/poster.png",
 
   why:
     "To promote cleanliness and environmental sustainability on campus while building awareness about hygiene and waste management.",
@@ -191,7 +191,7 @@ export const events = [
 
   category: "Cultural",
 
-  image: "/images/events/hindi-pakhwada/poster.jpg",
+  image: "/images/events/hindi-pakhwada/poster.png",
 
   why:
     "To promote the use of Hindi language and highlight its cultural importance in Indian society and heritage.",
@@ -241,7 +241,7 @@ export const events = [
 
   category: "Safety & Awareness",
 
-  image: "/images/events/fire-safety-training/poster.jpg",
+  image: "/images/events/fire-safety-training/poster.png",
 
   why:
     "To educate students on critical fire safety protocols and emergency response procedures, ensuring the safety of all campus community members.",
@@ -268,7 +268,53 @@ export const events = [
 
   videos: [],
 },
+{
+  slug: "Run for Unity-2024",
 
+  title: "Run for Unity",
+
+  description:
+    "A community run organised to promote unity, solidarity, fitness, and the spirit of togetherness among students and the community.",
+
+  startDate: "2024-10-31",
+
+  venue: "NIT Durgapur",
+
+  status: "completed",
+
+  category: "Social",
+
+  image: "/images/events/run-for-unity/poster.jpg",
+
+  why:
+    "To promote the spirit of unity and togetherness, encourage an active and healthy lifestyle, and spread awareness about the importance of solidarity in society.",
+
+  about:
+    "NSS NIT Durgapur organised the Unity Run to bring students and volunteers together in the spirit of unity, social responsibility, and community participation. The event encouraged participants to celebrate togetherness while promoting fitness and civic awareness.",
+
+  activities: [
+    "Unity Run / community run",
+    "Warm-up and fitness activities",
+    "Unity and national integration awareness",
+    "NSS volunteer participation",
+    "Community interaction",
+    "Awareness messages on unity and solidarity",
+    "Closing ceremony and group photographs",
+  ],
+
+  photos: [
+    "/images/events/run-for-unity/photo-1.jpeg",
+    "/images/events/run-for-unity/photo-2.jpeg",
+    "/images/events/run-for-unity/photo-3.jpeg",
+    "/images/events/run-for-unity/photo-4.jpeg",
+    //"/images/events/run-for-unity/photo-5.jpeg",
+    "/images/events/run-for-unity/photo-6.jpeg",
+
+
+  ],
+
+  videos: [],
+},
 
 {
   slug: "constitution-day-2024",
@@ -286,7 +332,7 @@ export const events = [
 
   category: "Education & Awareness",
 
-  image: "/images/events/constitution-day/poster.jpg",
+  image: "/images/events/constitution-day/poster.png",
 
   why:
     "To commemorate the adoption of the Indian Constitution and promote awareness about constitutional values, democratic principles, and fundamental rights.",
@@ -330,7 +376,7 @@ export const events = [
 
   category: "Education & Awareness",
 
-  image: "/images/events/janjatiya-gaurav-diwas/poster.jpg",
+  image: "/images/events/janjatiya-gaurav-diwas/poster.png",
 
   why:
     "To honor tribal freedom fighters and celebrate their invaluable contributions to India's independence struggle against British colonial rule.",
@@ -378,7 +424,7 @@ export const events = [
 
   category: "Cultural",
 
-  image: "/images/events/har-ghar-tiranga/poster.jpg",
+  image: "/images/events/har-ghar-tiranga/poster.png",
 
   why:
     "To promote patriotism and national pride during India's Independence Week and encourage widespread celebration of the national flag.",
@@ -441,12 +487,37 @@ export const events = [
   ],
 
   photos: [
-    "/images/events/independence-day/photo-1.jpeg",
-    "/images/events/independence-day/photo-2.jpeg",
-    "/images/events/independence-day/photo-3.jpeg",
+   
+     "/images/events/independence-day/photo-1.jpg",
+    "/images/events/independence-day/photo-2.jpg",
+    "/images/events/independence-day/photo-3.jpg",
+     "/images/events/independence-day/photo-4.jpg",
+    "/images/events/independence-day/photo-5.jpg",
+    "/images/events/independence-day/photo-6.jpg",
+     "/images/events/independence-day/photo-7.jpg",
+    "/images/events/independence-day/photo-8.jpg",
+    "/images/events/independence-day/photo-9.jpg",
+     "/images/events/independence-day/photo-10.jpg",
+    "/images/events/independence-day/photo-11.jpg",
+    "/images/events/independence-day/photo-12.jpg",
+     "/images/events/independence-day/photo-13.jpg",
+    "/images/events/independence-day/photo-14.jpg",
+    "/images/events/independence-day/photo-15.jpg",
+     "/images/events/independence-day/photo-16.jpg",
+    "/images/events/independence-day/photo-17.jpg",
+    "/images/events/independence-day/photo-18.jpg",
+     "/images/events/independence-day/photo-19.jpg",
+    "/images/events/independence-day/photo-20.jpg",
+    "/images/events/independence-day/photo-21.jpg",
+     "/images/events/independence-day/photo-22.jpg",
+    "/images/events/independence-day/photo-23.jpg",
+    "/images/events/independence-day/photo-24.jpg",
+     "/images/events/independence-day/photo-25.jpg",
+    "/images/events/independence-day/photo-26.jpg",
+   
   ],
 
-  videos: [],
+  videos: [ "/images/events/independence-day/videos.mp4",],
 },
 
 {
@@ -559,7 +630,7 @@ export const events = [
 
   category: "Education & Awareness",
 
-  image: "/images/events/vigilance-awareness-week/poster.jpg",
+  image: "/images/events/vigilance-awareness-week/poster.png",
 
   why:
     "To promote integrity, transparency, and ethical conduct among students and staff, while raising awareness about vigilance against corruption and malpractices.",
@@ -595,7 +666,7 @@ export const events = [
   {
     slug: "republic-day-celebration-2026",
 
-    title: "Republic Day Celebration & Community Service",
+    title: "Republic Day Celebration ",
 
     description:
       "A flag hoisting ceremony followed by a village cleanliness drive, cultural performances, and tree planting.",
@@ -634,9 +705,27 @@ export const events = [
       "/images/events/republic-day/photo-7.jpeg",
       "/images/events/republic-day/photo-8.jpeg",
      "/images/events/republic-day/photo-9.jpeg",
+     "/images/events/republic-day/photo-10.jpg",
+      "/images/events/republic-day/photo-11.jpg",
+      "/images/events/republic-day/photo-12.jpg",
+      "/images/events/republic-day/photo-13.jpg",
+      "/images/events/republic-day/photo-14.jpg",
+       "/images/events/republic-day/photo-15.jpg",
+      "/images/events/republic-day/photo-16.jpg",
+      "/images/events/republic-day/photo-17.jpg",
+      "/images/events/republic-day/photo-18.jeg",
+     "/images/events/republic-day/photo-19.jpg",
+     "/images/events/republic-day/photo-20.jpg",
+     "/images/events/republic-day/photo-21.jpg",
+      "/images/events/republic-day/photo-22.jpg",
+      "/images/events/republic-day/photo-23.jpg",
+      "/images/events/republic-day/photo-24.jpg",
+       "/images/events/republic-day/photo-25.jpg",
+      "/images/events/republic-day/photo-26.jpg",
     ],
 
-    videos: [],
+    videos: [  "/images/events/republic-day/video.mp4",
+],
   },
 
 
