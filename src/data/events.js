@@ -18,18 +18,18 @@ export const events = [
     image: "/images/events/yoga/yoga.jpg",
 
     why:
-      "To promote physical, mental, and spiritual well-being among students through the ancient practice of yoga and encourage a healthy lifestyle.",
+  "To promote physical and mental well-being among students and encourage the regular practice of yoga as part of a healthy lifestyle.",
 
-    about:
-      "International Yoga Day is celebrated globally to recognize the holistic benefits of yoga in achieving complete wellness. NSS at NIT Durgapur organized this event to foster an appreciation for this centuries-old practice among the student community.",
+about:
+  "NSS NIT Durgapur organized International Yoga Day to encourage students to practice yoga and understand its importance in maintaining physical fitness, mental well-being, and a balanced lifestyle.",
 
-    activities: [
-      "Participants demonstrated various yoga postures and techniques",
-      "Interactive sessions on the practice and discipline of yoga",
-      "Students shared their understanding of yoga benefits",
-      "Healthy lifestyle awareness discussions were conducted",
-      "A quiz on yoga was organized",
-    ],
+activities: [
+  "Yoga demonstration and guided practice sessions",
+  "Demonstration of basic yoga postures and breathing exercises",
+  "Participation of students and NSS volunteers",
+  "Awareness session on the benefits of regular yoga practice",
+  "Discussion on yoga and healthy living",
+],
 
     photos: [
       "/images/events/yoga/photo1.jpg",
@@ -63,20 +63,20 @@ export const events = [
 
   image: "/images/events/anti-drug-day/poster.png",
 
-  why:
-    "To raise awareness about the dangers of drug abuse and promote a healthy, drug-free lifestyle among students and the community.",
+ why:
+  "To create awareness among students about the harmful effects of drug abuse and encourage healthy, responsible, and drug-free choices.",
 
-  about:
-    "NSS NIT Durgapur observed International Anti-Drug Day to educate students about drug prevention, responsible choices, and the harmful consequences of substance abuse.",
+about:
+  "NSS NIT Durgapur observed International Anti-Drug Day as an awareness programme focused on the prevention of drug abuse. The programme encouraged students to understand the physical, mental, and social consequences of substance abuse and the importance of making healthy choices.",
 
-  activities: [
-    "Presentations on the dangers of drug abuse",
-    "Interactive speeches and expert talks",
-    "Quiz competition on substance abuse awareness",
-    "Creative art activities with anti-drug messages",
-    "Discussion on the consequences of drug addiction",
-    "Awareness on building a drug-free culture",
-  ],
+activities: [
+  "Awareness session on the harmful effects of drug abuse",
+  "Interactive talks and discussions on drug prevention",
+  "Quiz on drug abuse and its consequences",
+  "Poster and creative activities promoting a drug-free lifestyle",
+  "Discussion on prevention and responsible decision-making",
+  "Awareness activities promoting a drug-free campus",
+],
 
   photos: [
     "/images/events/anti-drug-day/photo-1.jpeg",
@@ -107,19 +107,19 @@ export const events = [
   image: "/images/events/national-space-day/poster.png",
 
   why:
-    "To celebrate India's achievements in space exploration and inspire students to pursue careers in space science and technology.",
+  "To celebrate India's achievements in space exploration and encourage students to develop an interest in space science, technology, and innovation.",
 
-  about:
-    "NIT Durgapur celebrated National Space Day with expert insights into India's space programme, space technology, and future opportunities in science and innovation.",
+about:
+  "NIT Durgapur observed National Space Day through sessions focused on India's space programme, space technology, and the contributions of scientists and engineers to the country's space missions. The programme provided students with an opportunity to learn about developments and opportunities in the field of space science.",
 
-  activities: [
-    "Online lecture by Dr. P. Ramashankar, former ISRO scientist",
-    "Virtual keynote address by President Droupadi Murmu",
-    "Presentation on materials and processes for space programmes",
-    "Space technology quiz competition",
-    "Discussion on opportunities and challenges in space applications",
-    "Participation of nearly 1,000 students",
-  ],
+activities: [
+  "Online lecture by Dr. P. Ramashankar, former ISRO scientist",
+  "Virtual keynote address by President Droupadi Murmu",
+  "Session on materials and processes used in space programmes",
+  "Space technology quiz competition",
+  "Discussion on space applications and future opportunities",
+  "Participation of students in the National Space Day programme",
+],
 
   photos: [
     "/images/events/national-space-day/photo1.jpeg",
@@ -150,20 +150,20 @@ export const events = [
   image: "/images/events/swachhata-pakhwada/poster.png",
 
   why:
-    "To promote cleanliness and environmental sustainability on campus while building awareness about hygiene and waste management.",
+  "To promote cleanliness, hygiene, responsible waste management, and environmental awareness among students and the campus community.",
 
-  about:
-    "NSS NIT Durgapur actively participated in Swachhata Pakhwada and Swachhta Hi Sewa through cleaning drives, sanitation activities, and awareness initiatives. The campaign encouraged students to maintain a clean, hygienic, and environmentally responsible campus.",
+about:
+  "NSS NIT Durgapur participated in Swachhata Pakhwada and Swachhta Hi Sewa through cleanliness and awareness activities across the campus. The programme encouraged students to take responsibility for maintaining a clean and hygienic environment and to adopt responsible waste-management practices.",
 
-  activities: [
-    "Campus-wide cleaning and awareness drives",
-    "Sanitation drives at different campus locations",
-    "Regular monitoring and follow-up activities",
-    "Special cleanliness activities during Gandhi Jayanti celebrations",
-    "Student participation in campus hygiene operations",
-    "Faculty guidance on maintaining hygiene standards",
-    "Awareness on waste management and environmental sustainability",
-  ],
+activities: [
+  "Cleanliness drives at different locations across the campus",
+  "Sanitation and hygiene awareness activities",
+  "Student participation in campus cleanliness initiatives",
+  "Awareness on proper waste disposal and management",
+  "Regular monitoring and follow-up of cleanliness activities",
+  "Cleanliness activities associated with Gandhi Jayanti",
+  "Promotion of environmental responsibility and campus hygiene",
+],
 
   photos: [
     "/images/events/swachhata-pakhwada/photo-1.jpeg",
@@ -194,21 +194,20 @@ export const events = [
   image: "/images/events/hindi-pakhwada/poster.png",
 
   why:
-    "To promote the use of Hindi language and highlight its cultural importance in Indian society and heritage.",
+  "To promote the use and appreciation of the Hindi language and encourage students to participate in activities that highlight India's linguistic and cultural heritage.",
 
-  about:
-    "NSS NIT Durgapur celebrated Hindi Pakhwada to strengthen students' connection with Hindi and encourage appreciation for India's linguistic and cultural diversity.",
+about:
+  "NSS NIT Durgapur observed Hindi Pakhwada through various language and literary activities. The programme encouraged students to express themselves in Hindi and appreciate the importance of the language in India's cultural and social life.",
 
-  activities: [
-    "Hindi essay writing competitions",
-    "Quiz competitions on Hindi language knowledge",
-    "Poetry recitations",
-    "Speeches on Hindi language and culture",
-    "Creative participation from diverse student groups",
-    "Discussions on Hindi's unifying role in India's diversity",
-    "Student expression through Hindi language activities",
-  ],
-
+activities: [
+  "Hindi essay writing competitions",
+  "Hindi language quiz competitions",
+  "Poetry recitation and literary activities",
+  "Speeches and discussions on Hindi language and culture",
+  "Student participation in Hindi language activities",
+  "Creative expression through Hindi",
+  "Discussions on the role of Hindi in India's linguistic diversity",
+],
   photos: [
     "/images/events/hindi-pakhwada/photo-1.jpeg",
     "/images/events/hindi-pakhwada/photo-2.jpeg",
@@ -244,20 +243,20 @@ export const events = [
   image: "/images/events/fire-safety-training/poster.png",
 
   why:
-    "To educate students on critical fire safety protocols and emergency response procedures, ensuring the safety of all campus community members.",
+  "To equip students with basic knowledge of fire prevention, emergency response, evacuation procedures, and the safe use of fire extinguishers.",
 
-  about:
-    "NSS NIT Durgapur conducted Fire Safety Training with expert guidance from fire safety personnel. The programme covered fire prevention, extinguisher use, evacuation procedures, and practical emergency response techniques.",
+about:
+  "NSS NIT Durgapur organized a Fire Safety Training programme to create awareness about fire hazards and emergency response. The session included guidance from fire safety personnel along with demonstrations and practical training on the appropriate use of fire extinguishers and safety procedures.",
 
-  activities: [
-    "Welcome address and introduction to CISF teams",
-    "Expert guidance from SAI DSP Durgapur",
-    "Demonstration of fire extinguishers and their proper use",
-    "Training on evacuation procedures and emergency protocols",
-    "Hands-on practical exercises at the Main Academic Complex",
-    "Emergency response techniques for students",
-    "Awareness on fire prevention and campus safety",
-  ],
+activities: [
+  "Introduction to fire safety and emergency preparedness",
+  "Interaction with fire safety personnel",
+  "Demonstration of different types of fire extinguishers",
+  "Practical demonstration of fire extinguisher use",
+  "Guidance on evacuation and emergency procedures",
+  "Hands-on fire safety training for participants",
+  "Awareness on fire prevention and campus safety",
+],
 
   photos: [
     "/images/events/fire-safety-training/photo-1.jpg",
@@ -269,7 +268,7 @@ export const events = [
   videos: [],
 },
 {
-  slug: "Run for Unity-2024",
+  slug: "run-for-unity-2024",
 
   title: "Run for Unity",
 
@@ -286,21 +285,21 @@ export const events = [
 
   image: "/images/events/run-for-unity/poster.jpg",
 
-  why:
-    "To promote the spirit of unity and togetherness, encourage an active and healthy lifestyle, and spread awareness about the importance of solidarity in society.",
+ why:
+  "To promote national unity, social harmony, and a spirit of togetherness while encouraging students to stay active and participate in community activities.",
 
-  about:
-    "NSS NIT Durgapur organised the Unity Run to bring students and volunteers together in the spirit of unity, social responsibility, and community participation. The event encouraged participants to celebrate togetherness while promoting fitness and civic awareness.",
+about:
+  "NSS NIT Durgapur organized the Run for Unity to bring students and volunteers together in a spirit of unity and social responsibility. The programme encouraged participation in a community run while spreading awareness about national integration, togetherness, and a healthy lifestyle.",
 
-  activities: [
-    "Unity Run / community run",
-    "Warm-up and fitness activities",
-    "Unity and national integration awareness",
-    "NSS volunteer participation",
-    "Community interaction",
-    "Awareness messages on unity and solidarity",
-    "Closing ceremony and group photographs",
-  ],
+activities: [
+  "Unity Run with participation from students and volunteers",
+  "Warm-up and fitness activities before the run",
+  "Awareness messages on national unity and integration",
+  "Participation of NSS volunteers",
+  "Interaction with the community during the event",
+  "Promotion of fitness and an active lifestyle",
+  "Closing activities and group photographs",
+], 
 
   photos: [
     "/images/events/run-for-unity/photo-1.jpeg",
@@ -335,20 +334,19 @@ export const events = [
   image: "/images/events/constitution-day/poster.png",
 
   why:
-    "To commemorate the adoption of the Indian Constitution and promote awareness about constitutional values, democratic principles, and fundamental rights.",
+  "To commemorate the adoption of the Indian Constitution and create awareness among students about constitutional values, rights, duties, and democratic principles.",
 
-  about:
-    "NSS NIT Durgapur observed Constitution Day, or Samvidhan Diwas, to deepen students' understanding of the Indian Constitution and its role in shaping national governance and society.",
+about:
+  "NSS NIT Durgapur observed Constitution Day to encourage students to understand the importance of the Indian Constitution and the values that guide the country's democratic system. The programme focused on constitutional awareness and civic responsibility.",
 
-  activities: [
-    "Educational seminars on the Indian Constitution",
-    "Quiz competitions on constitutional knowledge",
-    "Discussion on fundamental rights and duties",
-    "Interactive sessions on democratic values",
-    "NSS team participation and event coordination",
-    "Awareness on constitutional principles and governance",
-    "Student engagement in civic education",
-  ],
+activities: [
+  "Awareness sessions on the Indian Constitution",
+  "Quiz activities on constitutional knowledge",
+  "Discussion on fundamental rights and duties",
+  "Interactive sessions on democratic values",
+  "Student participation in Constitution Day activities",
+  "Awareness on constitutional principles and civic responsibilities",
+],
 
   photos: [
    // "/images/events/constitution-day/photo-1.jpg",
@@ -379,21 +377,20 @@ export const events = [
   image: "/images/events/janjatiya-gaurav-diwas/poster.png",
 
   why:
-    "To honor tribal freedom fighters and celebrate their invaluable contributions to India's independence struggle against British colonial rule.",
+  "To honour tribal freedom fighters and create awareness about the important role and contributions of tribal communities in India's freedom struggle.",
 
-  about:
-    "NSS NIT Durgapur observed Janjatiya Gaurav Diwas to remember the courage and sacrifices of tribal communities, with special focus on Birsa Munda and tribal resistance movements in India's freedom struggle.",
+about:
+  "NSS NIT Durgapur observed Janjatiya Gaurav Diwas to remember the courage and sacrifices of tribal communities and freedom fighters. The programme highlighted the contribution of Birsa Munda and the significance of tribal resistance movements in India's history.",
 
-  activities: [
-    "Seminar at the Institute Senate Room",
-    "Essay competition organized by the NSS team",
-    "Discussion on Birsa Munda and tribal resistance movements",
-    "Awareness about tribal regions of the former Bengal Presidency",
-    "Recognition of tribal leaders' contributions to independence",
-    "Discussion on tribal cultural and historical significance",
-    "Tribute to tribal communities' struggle for freedom and justice",
-  ],
-
+activities: [
+  "Seminar on tribal freedom fighters and their contributions",
+  "Essay competition organized by the NSS team",
+  "Discussion on Birsa Munda and tribal resistance movements",
+  "Awareness session on tribal regions and their historical significance",
+  "Discussion on the contribution of tribal leaders to India's freedom struggle",
+  "Awareness about tribal culture and heritage",
+  "Tribute to tribal communities and freedom fighters",
+],
   photos: [
     "/images/events/janjatiya-gaurav-diwas/photo-1.jpeg",
     "/images/events/janjatiya-gaurav-diwas/photo-2.jpeg",
@@ -426,23 +423,22 @@ export const events = [
 
   image: "/images/events/har-ghar-tiranga/poster.png",
 
-  why:
-    "To promote patriotism and national pride during India's Independence Week and encourage widespread celebration of the national flag.",
+ why:
+  "To encourage patriotism and respect for the national flag while promoting a sense of unity and national pride during the Independence Day celebrations.",
 
-  about:
-    "NSS NIT Durgapur organized Har Ghar Tiranga as part of the nationwide campaign to celebrate India's independence and strengthen patriotic spirit. The celebration brought together students, faculty, staff, and the local community.",
+about:
+  "NSS NIT Durgapur participated in the Har Ghar Tiranga campaign as part of the Independence Week celebrations. The programme brought together students, faculty, staff, and members of the community to promote the spirit of patriotism and encourage participation in national celebrations.",
 
-  activities: [
-    "Flag hoisting ceremonies across campus locations",
-    "Prabhat Pheri morning processions from 13th to 19th August",
-    "Patriotic parades",
-    "Art and craft exhibitions with patriotic themes",
-    "Participation by faculty, staff, and students",
-    "Community engagement during Independence Week",
-    "Awareness on India's independence struggle",
-    "Promotion of unity and national values",
-  ],
-
+activities: [
+  "Flag hoisting and display of the national flag",
+  "Prabhat Pheri morning processions from 13th to 19th August",
+  "Patriotic parades and awareness activities",
+  "Art and craft activities with patriotic themes",
+  "Participation of students, faculty, and staff",
+  "Community engagement during Independence Week",
+  "Awareness activities on India's freedom struggle",
+  "Promotion of national unity and patriotic values",
+], 
   photos: [
     "/images/events/har-ghar-tiranga/photo-1.jpeg",
     "/images/events/har-ghar-tiranga/photo-2.jpeg",
@@ -470,21 +466,21 @@ export const events = [
 
   image: "/images/events/independence-day/poster.jpeg",
 
-  why:
-    "To celebrate India's independence, honour the sacrifices of freedom fighters, and inspire national pride and unity among students.",
+ why:
+  "To celebrate India's Independence Day, remember the sacrifices of the freedom fighters, and encourage students to uphold the values of unity, responsibility, and service to the nation.",
 
-  about:
-    "NSS NIT Durgapur celebrated Independence Day with patriotic activities that remembered India's freedom struggle and encouraged students to uphold the values of unity, responsibility, and service to the nation.",
+about:
+  "NSS NIT Durgapur celebrated Independence Day with patriotic activities that brought students and the campus community together to commemorate India's freedom. The programme highlighted the importance of national unity, civic responsibility, and respect for the sacrifices made during the freedom struggle.",
 
-  activities: [
-    "Flag hoisting ceremony",
-    "National anthem and patriotic songs",
-    "Address on India's freedom struggle",
-    "Patriotic cultural performances",
-    "Student speeches and poetry recitations",
-    "Tribute to freedom fighters",
-    "Awareness on national unity and civic responsibility",
-  ],
+activities: [
+  "Flag hoisting ceremony",
+  "National anthem and patriotic songs",
+  "Address on India's freedom struggle",
+  "Patriotic cultural performances",
+  "Student speeches and poetry recitations",
+  "Tribute to freedom fighters",
+  "Awareness activities on national unity and civic responsibility",
+],
 
   photos: [
    
@@ -539,21 +535,21 @@ export const events = [
   image: "/images/events/ambedkar-jayanti/poster.jpeg",
 
   why:
-    "To honor Dr. B.R. Ambedkar's contributions to India's constitutional framework and his work for social equality and justice.",
+  "To commemorate the birth anniversary of Dr. B.R. Ambedkar and create awareness among students about his contributions to the Indian Constitution, social equality, and justice.",
 
-  about:
-    "NSS NIT Durgapur observed Ambedkar Jayanti to remember Dr. B.R. Ambedkar, the Chief Architect of the Indian Constitution. The event highlighted his visionary leadership, social reforms, and commitment to equality, dignity, and justice.",
+about:
+  "NSS NIT Durgapur observed Ambedkar Jayanti to remember Dr. B.R. Ambedkar and his contributions to the Indian Constitution and social reform. The programme encouraged students to reflect on the values of equality, dignity, justice, and constitutional responsibility.",
 
-  activities: [
-    "Seminars on Dr. Ambedkar's life and contributions",
-    "Discussion on constitutional values and social justice",
-    "Essay writing competitions",
-    "Quiz competitions on the Constitution and Ambedkar's philosophy",
-    "Screening of documentaries on his life and achievements",
-    "Students shared inspirational quotes and teachings",
-    "Tribute to his struggle against social discrimination",
-    "Interactive sessions on the relevance of his ideas today",
-  ],
+activities: [
+  "Seminars on Dr. B.R. Ambedkar's life and contributions",
+  "Discussion on constitutional values and social justice",
+  "Essay writing competitions",
+  "Quiz on the Indian Constitution and Ambedkar's philosophy",
+  "Screening of documentaries on his life and achievements",
+  "Sharing of inspirational quotes and teachings",
+  "Discussion on the relevance of his ideas in present society",
+  "Tribute to Dr. B.R. Ambedkar and his contributions",
+],
 
   photos: [
   //  "/images/events/ambedkar-jayanti/photo-1.jpg",
@@ -584,24 +580,24 @@ export const events = [
   image: "/images/events/sanitation-drive/poster.jpg",
 
   why:
-    "To maintain a clean and hygienic campus environment, promote environmental sustainability, and instill responsibility for waste management and sanitation.",
+  "To promote cleanliness, proper sanitation, responsible waste disposal, and a healthy environment across the campus and surrounding community.",
 
-  about:
-    "NSS NIT Durgapur regularly organizes sanitation drives to maintain cleanliness across the campus and surrounding community areas. These initiatives create awareness about hygiene, proper waste disposal, and the importance of a clean environment for health and well-being.",
+about:
+  "NSS NIT Durgapur regularly organizes sanitation drives to encourage students and volunteers to take part in cleanliness activities across the campus and nearby community areas. The initiative also creates awareness about hygiene, waste management, and maintaining a clean environment.",
 
-  activities: [
-    "Cleaning of campus buildings, classrooms, and common areas",
-    "Waste segregation and proper disposal practices",
-    "Cleaning of outdoor spaces, gardens, and pathways",
-    "Maintenance of hostel areas and dining facilities",
-    "Removal of litter and debris from campus grounds",
-    "Awareness sessions on hygiene and sanitation",
-    "Distribution of cleaning materials and safety equipment",
-    "Student volunteer participation in cleaning operations",
-    "Regular monitoring and follow-up activities",
-    "Coordination with campus maintenance staff",
-    "Awareness on preventing disease through proper sanitation",
-  ],
+activities: [
+  "Cleaning of campus buildings, classrooms, and common areas",
+  "Cleaning of outdoor spaces, gardens, and pathways",
+  "Waste segregation and proper waste disposal",
+  "Removal of litter and debris from campus areas",
+  "Cleanliness activities in hostel and dining areas",
+  "Awareness sessions on hygiene and sanitation",
+  "Distribution and use of cleaning materials and safety equipment",
+  "Participation of NSS volunteers in cleanliness activities",
+  "Regular monitoring and follow-up of sanitation activities",
+  "Coordination with campus maintenance staff",
+  "Awareness on the importance of proper sanitation",
+],
 
   photos: [
     "/images/events/sanitation-drive/photo-1.jpeg",
@@ -633,25 +629,22 @@ export const events = [
   image: "/images/events/vigilance-awareness-week/poster.png",
 
   why:
-    "To promote integrity, transparency, and ethical conduct among students and staff, while raising awareness about vigilance against corruption and malpractices.",
+  "To promote integrity, transparency, accountability, and ethical conduct among students and members of the campus community.",
 
-  about:
-    "NSS NIT Durgapur observes Vigilance Awareness Week to encourage honesty, accountability, and transparency among the student community. The initiative highlights the role of citizens and institutions in preventing corruption and promoting ethical governance.",
+about:
+  "NSS NIT Durgapur observed Vigilance Awareness Week to create awareness about integrity, transparency, and the importance of responsible conduct. The programme encouraged students to understand their role in promoting honesty and accountability in society.",
 
-  activities: [
-    "Seminars on vigilance, ethics, and anti-corruption measures",
-    "Awareness sessions on the role of citizens in combating corruption",
-    "Pledge-taking ceremonies promoting integrity and honesty",
-    "Essay writing competitions on vigilance and transparency",
-    "Quiz competitions on anti-corruption laws and policies",
-    "Poster campaigns on vigilance awareness",
-    "Discussion on whistleblower protection and reporting mechanisms",
-    "Interactive sessions with vigilance officials and experts",
-    "Awareness on institutional policies and governance",
-    "Campus-wide student awareness drives",
-    "Distribution of awareness materials and handbooks",
-    "Promotion of accountability and ethical conduct",
-  ],
+activities: [
+  "Awareness sessions on vigilance, integrity, and ethical conduct",
+  "Pledge-taking activities promoting honesty and integrity",
+  "Essay writing competitions on vigilance and transparency",
+  "Quiz competitions on vigilance and anti-corruption awareness",
+  "Poster and awareness campaigns",
+  "Discussions on transparency and accountability",
+  "Interactive sessions on ethical conduct and responsible citizenship",
+  "Campus-wide awareness activities",
+  "Distribution of awareness materials",
+],
 
   photos: [
     "/images/events/vigilance-awareness-week/photo-1.jpeg",
@@ -681,19 +674,20 @@ export const events = [
 
     image: "/images/events/republic-day/poster.jpeg",
 
-    why:
-      "To celebrate the spirit of the Indian Constitution while encouraging students to actively contribute towards community development.",
+   why:
+  "To celebrate Republic Day and the values of the Indian Constitution while encouraging students to contribute to the cleanliness and development of the surrounding community.",
 
-    about:
-      "NSS NIT Durgapur celebrated Republic Day through a combination of patriotic activities and community service initiatives. Volunteers participated in the flag hoisting ceremony and later worked together on cleanliness and plantation activities.",
+about:
+  "NSS NIT Durgapur celebrated Republic Day through a combination of patriotic activities and community service. Following the flag hoisting ceremony, NSS volunteers participated in cleanliness and tree plantation activities in Bidhannagar village, along with cultural and community interaction activities.",
 
-    activities: [
-      "Flag hoisting ceremony",
-      "Village cleanliness drive",
-      "Cultural performances",
-      "Tree plantation activity",
-      "Community interaction sessions",
-    ],
+activities: [
+  "Flag hoisting ceremony",
+  "Cleanliness drive in Bidhannagar village",
+  "Cultural performances",
+  "Tree plantation activity",
+  "Interaction with members of the local community",
+  "Participation of NSS volunteers in community service",
+],
 
     photos: [
       "/images/events/republic-day/photo-1.jpeg",
@@ -713,7 +707,7 @@ export const events = [
        "/images/events/republic-day/photo-15.jpg",
       "/images/events/republic-day/photo-16.jpg",
       "/images/events/republic-day/photo-17.jpg",
-      "/images/events/republic-day/photo-18.jeg",
+      "/images/events/republic-day/photo-18.jpg",
      "/images/events/republic-day/photo-19.jpg",
      "/images/events/republic-day/photo-20.jpg",
      "/images/events/republic-day/photo-21.jpg",
@@ -747,19 +741,20 @@ export const events = [
 
     image: "/images/events/blood-donation/poster.jpeg",
 
-    why:
-      "To encourage voluntary blood donation and contribute towards supporting patients and healthcare services that require regular blood supply.",
+   why:
+  "To encourage voluntary blood donation and create awareness among students about the importance of contributing to the availability of blood for patients and healthcare services.",
 
-    about:
-      "The blood donation camp was organized with medical supervision to ensure a safe and smooth donation process. Students, faculty members, and volunteers came together to contribute to this important healthcare initiative.",
+about:
+  "NSS NIT Durgapur organized a blood donation camp with medical supervision to provide a safe and organized environment for voluntary blood donation. Students, faculty members, and volunteers participated in the programme and supported the camp through donation and volunteer activities.",
 
-    activities: [
-      "Donor registration",
-      "Medical screening",
-      "Voluntary blood donation",
-      "Awareness sessions for first-time donors",
-      "Volunteer coordination and support",
-    ],
+activities: [
+  "Donor registration and verification",
+  "Medical screening of donors",
+  "Voluntary blood donation",
+  "Awareness and guidance for first-time donors",
+  "Volunteer support and coordination",
+  "Assistance during the donation process",
+],
 
     photos: [
       "/images/events/blood-donation/photo-1.jpg",
@@ -770,8 +765,6 @@ export const events = [
     videos: [],
   },
 ];
-
-
 export const eventsSectionContent = {
   eyebrow: "Activities",
 
