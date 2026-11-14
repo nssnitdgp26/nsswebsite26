@@ -8,7 +8,6 @@ import {
   Instagram,
   Facebook,
   ArrowUpRight,
-  Send,
   ExternalLink,
 } from "lucide-react";
 

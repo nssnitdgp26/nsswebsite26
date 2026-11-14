@@ -50,15 +50,16 @@ function getEmbedUrl(video) {
 
 function EventDetails() {
   const { slug } = useParams();
+
+  return <EventDetailsContent key={slug} slug={slug} />;
+}
+
+function EventDetailsContent({ slug }) {
   const [activePhoto, setActivePhoto] = useState(null);
 
   const event = events.find(
     (item) => item.slug === slug
   );
-
-  useEffect(() => {
-    setActivePhoto(null);
-  }, [slug]);
 
   useEffect(() => {
     if (activePhoto === null) return undefined;

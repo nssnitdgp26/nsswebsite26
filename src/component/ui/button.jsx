@@ -71,4 +71,6 @@ function Button({
   );
 }
 
+// The style helper is intentionally exported for consumers that need a matching button style.
+// eslint-disable-next-line react-refresh/only-export-components
 export { Button, buttonVariants };
