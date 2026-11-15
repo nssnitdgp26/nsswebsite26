@@ -1,571 +1,98 @@
-import React from "react";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useSpring,
-} from "framer-motion";
-import { ArrowRight, Landmark, MapPinned, School } from "lucide-react";
+import React, { lazy, Suspense, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import { ArrowDownRight, ArrowUpRight, Compass, HeartHandshake, Sprout, UsersRound } from "lucide-react";
+import { events } from "@/data/events";
+import heroImage from "@/images/hero/hero1.jpeg";
+import volunteerImage from "@/images/hero/hero3.jpeg";
+import CountUp from "@/components/CountUp";
+import Magnet from "@/components/Magnet";
+import ClickSpark from "@/components/ClickSpark";
+import SpotlightCard from "@/components/SpotlightCard";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
-import { aboutContent } from "@/data/about";
-import { HomeHero } from "@/component/home-hero";
+const ServiceOrbit = lazy(() => import("@/component/service-orbit").then((module) => ({ default: module.ServiceOrbit })));
 
-/* =====================================================
-   CHOOSE WHICH EVENTS TO DISPLAY ON HOME PAGE HERE
+const principles = [
+  { icon: HeartHandshake, title: "Show up", body: "Start close to home—with time, attention and a willingness to help." },
+  { icon: Compass, title: "Listen first", body: "Understand the need before deciding what action looks like." },
+  { icon: Sprout, title: "Leave it stronger", body: "Create work that stays useful long after a single event ends." },
+];
 
-   Add, remove, or change events in this array.
-   Only the events written here will appear on Home.jsx.
-===================================================== */
+const metrics = [
+  { number: 250, suffix: "+", label: "active volunteers" },
+  { number: 35, suffix: "+", label: "initiatives this year" },
+  { number: 5000, suffix: "+", label: "people reached" },
+  { number: 12000, suffix: "+", label: "hours in service" },
+];
 
-const featuredEvents = [
-  {
-    id: 1,
-    title: "Event Title 1",
-    description:
-      "Add a short description about this event and its impact.",
-    date: "Recent Event",
-    image: "/images/events/event1.jpg",
-  },
-  {
-    id: 2,
-    title: "Event Title 2",
-    description:
-      "Add a short description about this event and its impact.",
-    date: "Recent Event",
-    image: "/images/events/event2.jpg",
-  },
+const marqueeMessages = [
+  "NOT ME, BUT YOU.",
+  "SERVICE IS A VERB.",
+  "SMALL ACTS, SHARED FUTURES.",
+  "SHOW UP. LISTEN. ACT.",
+  "NSS NIT DURGAPUR.",
 ];
 
 function Home() {
+  const [activePrinciple, setActivePrinciple] = useState(["show-up"]);
   const { scrollYProgress } = useScroll();
-
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 80,
-    damping: 30,
-    restDelta: 0.001,
-  });
-
-  const videoScale = useTransform(
-    smoothProgress,
-    [0.35, 0.6],
-    [0.94, 1]
-  );
-
-  const impactY = useTransform(
-    smoothProgress,
-    [0.55, 0.75],
-    [50, -20]
-  );
+  const smoothProgress = useSpring(scrollYProgress, { stiffness: 85, damping: 26 });
+  const heroScale = useTransform(smoothProgress, [0, 0.18], [1, 1.13]);
+  const heroY = useTransform(smoothProgress, [0, 0.18], [0, 100]);
+  const recentEvents = useMemo(() => [...events].sort((a, b) => new Date(b.startDate) - new Date(a.startDate)).slice(0, 3), []);
 
   return (
-    <main className="overflow-hidden bg-white text-slate-900">
-
-      {/* =====================================================
-          HERO
-          DO NOT CHANGE
-      ====================================================== */}
-
-      <HomeHero />
-
-      <section className="relative overflow-hidden bg-slate-950 px-4 py-16 text-white sm:px-6 sm:py-20 lg:px-8">
-        <div className="pointer-events-none absolute -right-24 top-1/2 h-96 w-96 -translate-y-1/2 rounded-full border border-white/10" />
-        <div className="pointer-events-none absolute -right-10 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full border border-primary/40" />
-
-        <div className="relative mx-auto max-w-7xl">
-          <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-center lg:gap-20">
-            <motion.div
-              initial={{ opacity: 0, x: -24 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6 }}
-            >
-              <p className="text-xs font-bold uppercase tracking-[0.22em] text-primary">Where service happens</p>
-              <h2 className="mt-5 max-w-md text-4xl font-bold leading-[1.02] tracking-tight sm:text-5xl">
-                One spirit.<br />
-                <span className="text-white/45">Many places to show up.</span>
-              </h2>
-              <p className="mt-6 max-w-md text-base leading-8 text-white/65">
-                Every NSS initiative starts close to home, reaches beyond campus, and returns with a stronger sense of shared responsibility.
-              </p>
+    <main className="overflow-hidden bg-[#f4f7fb] text-slate-900">
+      <section className="relative isolate min-h-[calc(100svh-72px)] overflow-hidden bg-[#071321] text-white">
+        <motion.img src={heroImage} alt="NSS NIT Durgapur volunteers" style={{ scale: heroScale, y: heroY }} className="absolute inset-0 -z-30 size-full object-cover opacity-45" />
+        <div className="absolute inset-0 -z-20 bg-[linear-gradient(100deg,rgba(7,19,33,.96)_4%,rgba(7,19,33,.74)_48%,rgba(7,19,33,.3))]" />
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_76%_42%,rgba(229,94,53,.28),transparent_24%),linear-gradient(0deg,rgba(7,19,33,.9),transparent_60%)]" />
+        <Suspense fallback={<div className="absolute inset-0 hidden bg-[radial-gradient(circle_at_75%_45%,rgba(229,94,53,.2),transparent_27%)] xl:block" />}>
+          <ServiceOrbit />
+        </Suspense>
+        <div className="absolute left-0 right-0 top-8 h-px bg-white/15" />
+        <div className="pointer-events-none relative mx-auto flex min-h-[calc(100svh-72px)] max-w-[88rem] items-end px-4 pb-16 pt-24 sm:px-7 lg:items-center lg:px-10 lg:pb-0 lg:pt-10">
+          <div className="pointer-events-auto w-fit max-w-[min(100%,44rem)]">
+            <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="eyebrow-line text-primary">National Service Scheme · NIT Durgapur</motion.p>
+            <motion.h1 initial={{ opacity: 0, y: 44 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .85, delay: .1, ease: [0.22, 1, .36, 1] }} className="mt-7 text-balance text-[clamp(4.1rem,10.5vw,10.8rem)] font-black leading-[.84] tracking-[-.045em]">
+              SERVICE<br /><span className="text-primary">LEAVES A TRACE.</span>
+            </motion.h1>
+            <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .65, delay: .35 }} className="mt-9 flex flex-wrap items-end gap-x-9 gap-y-5">
+              <p className="max-w-md text-base leading-7 text-white/72 sm:text-lg">Student-led service that moves between campus, community, and country—turning care into shared, visible action.</p>
+              <Magnet padding={80} magnetStrength={3.6} maxOffset={12} tilt={3} scale={1.02}>
+                <ClickSpark sparkColor="#e55e35" sparkCount={9} sparkRadius={26} sparkSize={8} duration={430}>
+                  <Link to="/events" className="inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3.5 text-sm font-bold text-primary-foreground transition-colors hover:bg-white hover:text-slate-950" data-cursor-label="ENTER ARCHIVE">Enter the archive <ArrowUpRight className="size-4" /></Link>
+                </ClickSpark>
+              </Magnet>
             </motion.div>
-
-            <div className="relative grid gap-3 sm:grid-cols-3 sm:gap-4">
-              {[
-                { icon: School, number: "01", title: "Campus", text: "Students turning awareness into everyday action." },
-                { icon: MapPinned, number: "02", title: "Community", text: "Volunteers listening, learning and working alongside people." },
-                { icon: Landmark, number: "03", title: "Country", text: "Service shaped by civic responsibility and national purpose." },
-              ].map(({ icon: Icon, number, title, text }, index) => (
-                <motion.article
-                  key={title}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ y: -6 }}
-                  className="group relative min-h-56 overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm transition-colors hover:border-primary/60 hover:bg-white/10 sm:min-h-72 sm:p-6"
-                >
-                  <span className="text-xs font-bold tracking-[0.18em] text-white/35">{number}</span>
-                  <div className="mt-8 flex h-11 w-11 items-center justify-center rounded-xl border border-primary/40 bg-primary/15 text-primary transition-transform duration-300 group-hover:scale-110">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <h3 className="mt-6 text-xl font-bold tracking-tight">{title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-white/60">{text}</p>
-                </motion.article>
-              ))}
-            </div>
           </div>
         </div>
       </section>
 
-      {/* =====================================================
-          ABOUT
-      ====================================================== */}
-
-      <section
-        id="about"
-        className="relative overflow-hidden px-4 py-24 sm:px-6 sm:py-32 lg:px-8"
-      >
-        <motion.div
-          animate={{
-            x: [0, 50, 0],
-            y: [0, 30, 0],
-          }}
-          transition={{
-            duration: 14,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="pointer-events-none absolute -left-32 top-20 h-72 w-72 rounded-full bg-primary/5 blur-3xl"
-        />
-
-        <div className="relative mx-auto max-w-7xl">
-          <div className="grid gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:gap-20">
-
-            {/* LEFT */}
-
-            <motion.div
-              initial={{ opacity: 0, x: -35 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.25 }}
-              transition={{ duration: 0.7 }}
-            >
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
-                {aboutContent.eyebrow}
-              </p>
-
-              <h2 className="mt-5 max-w-4xl text-4xl font-bold leading-[1.05] tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
-                {aboutContent.title}{" "}
-                <span className="text-primary">
-                  {aboutContent.titleAccent}
-                </span>
-              </h2>
-
-              <motion.div
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="mt-8 h-px w-20 origin-left bg-primary"
-              />
-
-              <div className="mt-8 max-w-3xl space-y-5">
-                {aboutContent.paragraphs.map((paragraph, index) => (
-                  <motion.p
-                    key={index}
-                    initial={{ opacity: 0, y: 18 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{
-                      duration: 0.5,
-                      delay: index * 0.1,
-                    }}
-                    className="text-base leading-8 text-slate-600 sm:text-lg"
-                  >
-                    {paragraph}
-                  </motion.p>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* RIGHT EXPERIENCE CARD */}
-
-            <motion.div
-              initial={{ opacity: 0, x: 35 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.25 }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              className="relative"
-            >
-              <div className="absolute -inset-5 rounded-[2.5rem] bg-primary/5 blur-3xl" />
-
-              <motion.div
-                whileHover={{ y: -6 }}
-                transition={{ duration: 0.4 }}
-                className="relative overflow-hidden rounded-[2rem] bg-slate-950 p-8 text-white shadow-2xl sm:p-10"
-              >
-                <motion.div
-                  animate={{
-                    x: [-20, 30, -20],
-                    y: [-10, 20, -10],
-                  }}
-                  transition={{
-                    duration: 10,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="absolute right-0 top-0 h-48 w-48 rounded-full bg-primary/20 blur-3xl"
-                />
-
-                <div className="relative">
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/45">
-                    NSS NIT Durgapur
-                  </p>
-
-                  <h3 className="mt-6 text-3xl font-bold leading-tight sm:text-4xl">
-                    Service.
-                    <br />
-                    Responsibility.
-                    <br />
-                    Community.
-                  </h3>
-
-                  <div className="mt-7 h-px w-14 bg-primary" />
-
-                  <p className="mt-7 text-base leading-7 text-white/65">
-                    NSS gives students an opportunity to step beyond the
-                    classroom, understand real community needs, and contribute
-                    through consistent voluntary service.
-                  </p>
-
-                  <div className="mt-9 flex items-center gap-3 text-sm font-semibold text-white/70">
-                    <span className="relative flex h-2.5 w-2.5">
-                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-60" />
-                      <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-primary" />
-                    </span>
-
-                    Student-led community service
-                  </div>
-                </div>
-              </motion.div>
-            </motion.div>
-
-          </div>
+      <section className="border-y border-slate-900/10 bg-[#e9eff5] py-4 overflow-hidden">
+        <div className="home-marquee whitespace-nowrap text-[clamp(1.05rem,2vw,1.8rem)] font-black tracking-[-.045em] text-slate-900">
+          {[...marqueeMessages, ...marqueeMessages].map((message, index) => <span key={`${message}-${index}`}>{message}</span>)}
         </div>
       </section>
 
-      {/* =====================================================
-          FOUNDATION / OBJECTIVES
-      ====================================================== */}
-
-      <section
-        id="foundation"
-        className="relative overflow-hidden border-y border-slate-200 bg-slate-50 px-4 py-24 sm:px-6 sm:py-32 lg:px-8"
-      >
-        <div className="mx-auto max-w-7xl">
-
-          <motion.div
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="max-w-3xl"
-          >
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
-              Our Foundation
-            </p>
-
-            <h2 className="mt-5 text-4xl font-bold leading-tight tracking-tight text-slate-950 sm:text-5xl">
-              {aboutContent.objectivesTitle}
-            </h2>
-
-            <p className="mt-5 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
-              The values that guide our volunteers and every step we take
-              towards building stronger communities.
-            </p>
-          </motion.div>
-
-          {/* OBJECTIVES — ARROW REMOVED */}
-
-          <div className="mt-14 grid gap-5 md:grid-cols-2">
-            {aboutContent.objectives.map((item, index) => (
-              <motion.article
-                key={item.title}
-                initial={{ opacity: 0, y: 25 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{
-                  duration: 0.5,
-                  delay: index * 0.08,
-                }}
-                whileHover={{ y: -4 }}
-                className="group relative flex min-h-[150px] items-center gap-6 overflow-hidden rounded-2xl border border-slate-200 bg-white px-6 py-6 transition-all duration-300 hover:border-primary/30 hover:shadow-lg sm:px-8"
-              >
-                <div className="absolute left-0 top-0 h-full w-1 bg-primary transition-all duration-300 group-hover:w-2" />
-
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-sm font-bold text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-white">
-                  {String(index + 1).padStart(2, "0")}
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-bold tracking-tight text-slate-950">
-                    {item.title}
-                  </h3>
-
-                  <p className="mt-2 text-sm leading-7 text-slate-600 sm:text-base">
-                    {item.description}
-                  </p>
-                </div>
-              </motion.article>
-            ))}
-          </div>
+      <section className="relative px-4 py-24 sm:px-7 sm:py-32 lg:px-10">
+        <div className="mx-auto grid max-w-[88rem] gap-14 lg:grid-cols-[.8fr_1.2fr] lg:gap-24">
+          <div className="lg:sticky lg:top-28 lg:self-start"><p className="eyebrow-line text-primary">How we move</p><h2 className="mt-5 max-w-md text-balance text-5xl font-black leading-[.9] tracking-[-.065em] sm:text-6xl">The work starts with a choice.</h2><p className="mt-7 max-w-md leading-8 text-slate-600">A better campus and a stronger community are not abstractions. They are built in small, repeatable acts of attention.</p></div>
+          <Accordion value={activePrinciple} onValueChange={setActivePrinciple} className="grid gap-4">
+            {principles.map((item, index) => { const Icon = item.icon; const value = item.title.toLowerCase().replaceAll(" ", "-"); return <AccordionItem key={item.title} value={value} onPointerEnter={() => setActivePrinciple([value])} className="service-guide-item group/service overflow-hidden rounded-[1.7rem] border border-slate-900/10 bg-white transition-all duration-300 hover:border-primary/55 data-[open]:border-primary data-[open]:bg-slate-900 data-[open]:text-white data-[open]:shadow-xl data-[open]:shadow-slate-900/20"><AccordionTrigger className="rounded-none px-6 py-6 no-underline hover:no-underline sm:px-8 sm:py-7"><span className="grid grid-cols-[auto_1fr_auto] items-center gap-5"><span className="service-guide-icon grid size-12 place-items-center rounded-full bg-slate-100 text-primary transition-all duration-300 group-data-[open]/accordion-trigger:bg-primary group-data-[open]/accordion-trigger:text-white"><Icon className="size-5 transition-transform duration-300" /></span><span className="text-2xl font-black tracking-[-.04em]">{item.title}</span><span className="text-sm font-bold text-slate-300 transition-colors group-data-[open]/accordion-trigger:text-primary">0{index + 1}</span></span></AccordionTrigger><AccordionContent className="px-6 pb-6 sm:px-8 sm:pb-8"><p className="max-w-lg text-sm leading-6 text-slate-600 group-data-[open]/service:text-white/68">{item.body}</p></AccordionContent></AccordionItem>; })}
+          </Accordion>
         </div>
       </section>
 
-      {/* =====================================================
-          VIDEO
-      ====================================================== */}
-
-      <section
-        id="work"
-        className="relative overflow-hidden bg-slate-950 px-4 py-24 text-white sm:px-6 sm:py-32 lg:px-8"
-      >
-        <motion.div
-          animate={{
-            x: [0, 60, 0],
-            y: [0, -40, 0],
-          }}
-          transition={{
-            duration: 14,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="pointer-events-none absolute -left-40 top-0 h-[500px] w-[500px] rounded-full bg-primary/10 blur-[150px]"
-        />
-
-        <div className="relative mx-auto max-w-7xl">
-          <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:items-end">
-
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.25 }}
-              transition={{ duration: 0.7 }}
-            >
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
-                {aboutContent.video.eyebrow}
-              </p>
-
-              <h2 className="mt-5 text-4xl font-bold leading-tight tracking-tight sm:text-5xl">
-                {aboutContent.video.title}
-              </h2>
-
-              <div className="mt-6 h-px w-16 bg-blue-400" />
-
-              <p className="mt-6 max-w-xl text-base leading-8 text-white/60 sm:text-lg">
-                {aboutContent.video.description}
-              </p>
-            </motion.div>
-
-            <motion.div
-              style={{ scale: videoScale }}
-              initial={{ opacity: 0, y: 45 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.8 }}
-              className="relative"
-            >
-              <div className="absolute -inset-5 rounded-[2rem] bg-primary/10 blur-2xl" />
-
-              <div className="relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-black shadow-2xl">
-                <video
-                  src={aboutContent.video.src}
-                  controls
-                  playsInline
-                  preload="metadata"
-                  className="block h-auto max-h-[720px] min-h-[300px] w-full object-contain"
-                >
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-            </motion.div>
-
-          </div>
-        </div>
+      <section className="relative overflow-hidden bg-slate-900 px-4 py-24 text-white sm:px-7 sm:py-32 lg:px-10">
+        <div className="absolute inset-0 opacity-35" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px)", backgroundSize: "56px 56px" }} />
+        <div className="relative mx-auto max-w-[88rem]"><div className="flex flex-col justify-between gap-7 md:flex-row md:items-end"><div><p className="eyebrow-line text-primary">Proof of presence</p><h2 className="mt-5 text-balance text-5xl font-black leading-[.9] tracking-[-.065em] sm:text-6xl">Service you can measure.</h2></div><p className="max-w-sm leading-7 text-white/60">Not metrics for a dashboard. A record of people choosing to make time for each other.</p></div><div className="mt-16 grid border-y border-white/15 md:grid-cols-4">{metrics.map((metric, index) => <div key={metric.label} className="group border-b border-white/15 px-5 py-9 last:border-b-0 md:border-b-0 md:border-r md:px-8 md:last:border-r-0"><p className="text-5xl font-black tracking-[-.07em] text-primary sm:text-6xl"><CountUp to={metric.number} suffix={metric.suffix} mode="roll" duration={1.6} easing="spring" /></p><p className="mt-4 max-w-28 text-sm leading-5 text-white/60">{metric.label}</p><span className="mt-7 block h-px w-10 bg-white/20 transition-all duration-500 group-hover:w-full group-hover:bg-primary" /></div>)}</div></div>
       </section>
 
-      {/* =====================================================
-          YEAR OF SERVICE / IMPACT
-      ====================================================== */}
+      <section className="px-4 py-24 sm:px-7 sm:py-32 lg:px-10"><div className="mx-auto max-w-[88rem]"><div className="flex flex-col gap-7 md:flex-row md:items-end md:justify-between"><div><p className="eyebrow-line text-primary">Field notes</p><h2 className="mt-5 text-balance text-5xl font-black leading-[.9] tracking-[-.065em] sm:text-6xl">What happened when we showed up.</h2></div><Link to="/events" className="inline-flex items-center gap-3 text-sm font-bold text-slate-900 hover:text-primary">See every story <span className="grid size-10 place-items-center rounded-full border border-slate-900/15"><ArrowUpRight className="size-4" /></span></Link></div><div className="mt-14 grid gap-5 lg:grid-cols-3">{recentEvents.map((event, index) => <SpotlightCard key={event.slug} theme="light" spotlightColor="#e55e35" intensity={.2} grain={.05} className="group min-h-[480px] p-0! rounded-[1.6rem] border border-slate-900/10 bg-white"><Link to={`/events/${event.slug}`} className="flex h-full flex-col" data-cursor-label="READ STORY"><div className="relative h-60 overflow-hidden"><img src={event.image} alt="" className="size-full object-cover transition-transform duration-700 group-hover:scale-110" /><div className="absolute inset-0 bg-gradient-to-t from-slate-950/65 to-transparent" /><span className="absolute bottom-4 left-5 rounded-full bg-primary px-3 py-1 text-[10px] font-bold tracking-[.12em] text-white">0{index + 1} / FIELD NOTE</span></div><div className="flex flex-1 flex-col p-6"><p className="text-xs font-bold tracking-[.13em] text-primary">{event.category}</p><h3 className="mt-4 text-2xl font-black leading-[.95] tracking-[-.05em]">{event.title}</h3><p className="mt-4 line-clamp-3 text-sm leading-6 text-slate-600">{event.description}</p><span className="mt-auto flex items-center gap-2 pt-8 text-sm font-bold">Read the story <ArrowUpRight className="size-4 text-primary" /></span></div></Link></SpotlightCard>)}</div></div></section>
 
-      <section
-        id="impact"
-        className="relative overflow-hidden border-b border-slate-200 bg-white px-4 py-24 sm:px-6 sm:py-32 lg:px-8"
-      >
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.4, 0.7, 0.4],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="pointer-events-none absolute right-0 top-0 h-80 w-80 rounded-full bg-primary/5 blur-3xl"
-        />
-
-        <div className="relative mx-auto max-w-7xl">
-
-          <motion.div
-            style={{ y: impactY }}
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="max-w-3xl"
-          >
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
-              Our Impact
-            </p>
-
-            <h2 className="mt-5 text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl">
-              Service measured
-              <span className="block text-primary">
-                through action.
-              </span>
-            </h2>
-
-            <p className="mt-5 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
-              Verified figures reflecting the scale of student participation
-              and community engagement at NSS NIT Durgapur.
-            </p>
-          </motion.div>
-
-          <div className="mt-16 grid border-y border-slate-200 md:grid-cols-4">
-            {aboutContent.facts.map((fact, index) => (
-              <motion.div
-                key={fact.label}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{
-                  duration: 0.6,
-                  delay: index * 0.1,
-                }}
-                whileHover={{ y: -5 }}
-                className="group relative overflow-hidden border-b border-slate-200 px-5 py-10 transition-all duration-500 last:border-b-0 hover:bg-slate-50 md:border-b-0 md:border-r md:px-7 md:py-12 md:last:border-r-0 lg:px-10"
-              >
-                <div className="absolute left-0 top-0 h-full w-1 scale-y-0 bg-primary transition-transform duration-500 group-hover:scale-y-100" />
-
-                <p className="text-5xl font-bold tracking-tight text-slate-950 transition-transform duration-500 group-hover:-translate-y-1 sm:text-6xl">
-                  {fact.value}
-                </p>
-
-                <div className="mt-5 h-px w-10 bg-primary transition-all duration-500 group-hover:w-20" />
-
-                <p className="mt-4 text-sm font-medium leading-6 text-slate-500">
-                  {fact.label}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* =====================================================
-          FEATURED EVENTS
-      ====================================================== */}
-
-      <section
-        id="moments"
-        className="relative overflow-hidden bg-white px-4 py-20 sm:px-6 sm:py-24 lg:px-8"
-      >
-        <div className="mx-auto max-w-7xl">
-
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="max-w-2xl"
-            >
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
-                Featured Events
-              </p>
-
-              <h2 className="mt-4 text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl">
-                Moments in
-                <span className="text-primary"> action.</span>
-              </h2>
-            </motion.div>
-
-            <motion.a
-              href={aboutContent.moments.href}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.15 }}
-              className="group inline-flex items-center gap-3 text-sm font-semibold text-slate-900 transition-colors hover:text-primary"
-            >
-              View all events
-              <span className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 transition-all duration-300 group-hover:border-primary group-hover:bg-primary group-hover:text-white">
-                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </span>
-            </motion.a>
-
-          </div>
-
-          {/* EVENTS */}
-
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {featuredEvents.map((item, index) => (
-              <motion.article
-                key={item.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{
-                  duration: 0.6,
-                  delay: index * 0.1,
-                }}
-                whileHover={{ y: -6 }}
-                className="group overflow-hidden rounded-2xl border border-slate-200 bg-white transition-shadow duration-300 hover:shadow-xl"
-              >
-                <div className="relative aspect-[16/9] overflow-hidden bg-slate-100">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent" />
-
-                  <div className="absolute left-5 top-5 rounded-full bg-white/90 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-slate-900 backdrop-blur-sm">
-                    {item.date}
-                  </div>
-                </div>
-
-                <div className="p-6 sm:p-7">
-                  <h3 className="text-xl font-bold tracking-tight text-slate-950">
-                    {item.title}
-                  </h3>
-
-                  <p className="mt-3 text-sm leading-7 text-slate-600">
-                    {item.description}
-                  </p>
-
-                  <div className="mt-6 h-px w-10 bg-primary transition-all duration-500 group-hover:w-20" />
-                </div>
-              </motion.article>
-            ))}
-          </div>
-
-        </div>
-      </section>
-
+      <section className="px-4 pb-24 sm:px-7 sm:pb-32 lg:px-10"><div className="relative mx-auto max-w-[88rem] overflow-hidden rounded-[2rem] bg-[#e55e35] px-7 py-14 text-white sm:px-12 sm:py-20"><img src={volunteerImage} alt="" className="absolute inset-0 size-full object-cover opacity-15 mix-blend-multiply" /><div className="relative grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end"><div><p className="eyebrow-line text-white">The next trace is yours</p><h2 className="mt-6 max-w-3xl text-balance text-5xl font-black leading-[.88] tracking-[-.07em] sm:text-7xl">Bring your time.<br />Bring your people.</h2></div><Magnet padding={70} magnetStrength={3.4} maxOffset={12}><Link to="/contact" data-cursor-label="CONNECT" className="inline-flex items-center gap-3 rounded-full bg-slate-950 px-6 py-4 text-sm font-bold text-white transition-colors hover:bg-white hover:text-slate-950">Join the conversation <UsersRound className="size-4" /></Link></Magnet></div></div></section>
     </main>
   );
 }

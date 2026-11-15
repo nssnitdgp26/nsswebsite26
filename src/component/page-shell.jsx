@@ -1,10 +1,12 @@
 import React from "react";
 import { Navbar } from "./navbar";
 import { Footer } from "./footer";
+import { AmbientField } from "./ambient-field";
 
 export function PageShell({ children }) {
   return (
-    <div className="flex min-h-screen flex-col bg-background">
+    <div className="site-shell flex min-h-screen flex-col bg-background">
+      <AmbientField className="site-ambient" />
       <Navbar />
 
       <main id="main-content" className="flex-1">
