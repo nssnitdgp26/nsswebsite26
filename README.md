@@ -1,172 +1,113 @@
-# NSS NIT Durgapur Website
+# NSS NIT Durgapur
 
-The official website of the **National Service Scheme (NSS) Unit, NIT Durgapur**. This repository contains the complete source code for a modern, responsive, and maintainable static web application built with **React, Vite, and Tailwind CSS**.
+The official website for the National Service Scheme unit at NIT Durgapur. It is a single-page React application that presents the unit’s work, event stories, leadership, and ways to connect.
 
-## Overview
+## Highlights
 
-The website serves as a central platform for showcasing NSS NIT Durgapur's activities, events, team, initiatives, and social impact. It is designed with a strong focus on **performance, accessibility, responsiveness, and maintainability**.
+- Responsive home experience with scroll-led motion and an interactive 3D service orbit.
+- Event archive with individual event-detail routes and media galleries.
+- Team and contact pages backed by editable local data files.
+- Route-specific page transitions, smooth scrolling, keyboard navigation, and reduced-motion support.
+- Reusable interaction primitives from React Bits plus shadcn/Base UI components.
 
-A core architectural principle of the project is the **separation of content from presentation**. All editable website content—including events, team members, gallery items, site information, and page-specific text—is maintained in dedicated files within `src/data/`.
+## Stack
 
-This approach allows content to be updated without modifying the underlying React components and eliminates the need for an external database or CMS.
+- React 19 and React Router
+- Vite 7
+- Tailwind CSS 4
+- Framer Motion and Lenis
+- Three.js, React Three Fiber, and Drei
+- shadcn/Base UI and Lucide icons
 
-## Project Structure
-
-```text
-.
-├── public/                 # Static assets such as logos and robots.txt
-├── src/
-│   ├── component/          # Reusable React components
-│   │   └── ui/             # Generic UI primitives
-│   ├── data/               # Centralized website content
-│   ├── images/             # Image assets used throughout the website
-│   ├── lib/                # Shared utilities and helper functions
-│   └── pages/              # Top-level page components
-├── index.html              # Application entry point
-├── package.json            # Dependencies and project scripts
-└── vite.config.js          # Vite configuration
-```
-
-### Key Directories
-
-* **`src/pages/`** — Contains the primary page components, including Home, Events, Team, and other routed pages.
-* **`src/component/`** — Contains reusable components and page sections used throughout the application.
-* **`src/data/`** — Acts as the **single source of truth** for all editable website content.
-* **`src/images/`** — Contains visual assets used across the website.
-* **`src/lib/`** — Contains shared utilities and helper functions.
-
-## Getting Started
+## Getting started
 
 ### Prerequisites
 
-Ensure that **Node.js 20.x or later** is installed on your system.
+- Node.js 26 or newer (the project declares this in `package.json`)
+- npm
 
-### Installation
-
-Clone the repository and navigate to the project directory:
+### Install and run
 
 ```bash
 git clone https://github.com/nssnitdgp26/nsswebsite26.git
 cd nsswebsite26
-```
-
-Install dependencies:
-
-```bash
 npm install
-```
-
-Start the development server:
-
-```bash
 npm run dev
 ```
 
-The application will be available at:
+Vite prints the local URL when the server starts (normally `http://localhost:5173`).
+
+## Scripts
+
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Start the Vite development server. |
+| `npm run build` | Create the production bundle in `dist/`. |
+| `npm run preview` | Serve the production bundle locally. |
+| `npm run lint` | Run ESLint across the repository. |
+
+## Routes
+
+| Route | Page |
+| --- | --- |
+| `/` | Home |
+| `/events` | Event archive |
+| `/events/:slug` | Event detail |
+| `/team` | NSS team |
+| `/contact` | Contact and volunteering |
+
+## Project structure
 
 ```text
-http://localhost:5173
+src/
+├── component/       # Site sections, shell, navigation, and visual effects
+├── components/      # React Bits and shadcn/Base UI primitives
+├── data/            # Editable site, event, gallery, team, and page content
+├── images/          # Local image and video assets
+├── lib/             # Shared utilities
+├── pages/           # Route-level React components
+├── App.jsx          # Router and page transition orchestration
+├── index.css        # Tailwind import, theme tokens, and global styles
+└── main.jsx         # Application entry point
 ```
 
-If port `5173` is unavailable, Vite will automatically use the next available port.
+## Editing content
 
-## Available Scripts
+Most content is data-driven. Update the files below rather than hard-coding copy in page components.
 
-| Command           | Description                                               |
-| ----------------- | --------------------------------------------------------- |
-| `npm run dev`     | Starts the development server with hot module replacement |
-| `npm run build`   | Creates an optimized production build in `dist/`          |
-| `npm run preview` | Serves the production build locally for verification      |
-| `npm run lint`    | Runs ESLint to identify code-quality issues               |
+| Content | File |
+| --- | --- |
+| Events, detail copy, galleries, and media | `src/data/events.js` |
+| Current and past teams; faculty advisor | `src/data/team.js` |
+| Home-page copy and content | `src/data/home.js` |
+| Contact details | `src/data/contact.js` |
+| Site-wide navigation and metadata | `src/data/site.js` |
 
-## Content Management
+Add images under `public/` when they must be addressable by URL, or import them from `src/images/` when they belong to a component bundle.
 
-All website content is centralized within the `src/data/` directory. This allows contributors to update information without modifying the presentation or component logic.
+## UI conventions
 
-### Events
+- Use the `@/` alias for imports from `src/`; it is configured in both `jsconfig.json` and `vite.config.js`.
+- Keep reusable shadcn/Base UI primitives in `src/components/ui/`.
+- Keep bespoke visual/interaction components in `src/component/` or `src/components/` according to their existing pattern.
+- Respect `prefers-reduced-motion` when adding motion. Prefer transform and opacity animation over layout-changing animation.
+- Keep mobile interaction alternatives for pointer-only effects.
 
-Add or modify events in:
+## Verification
 
-```text
-src/data/events.js
-```
-
-### Team
-
-Manage the faculty advisor, current leadership, and previous team members in:
-
-```text
-src/data/team.js
-```
-
-### Gallery
-
-Manage gallery categories and images in:
-
-```text
-src/data/gallery.js
-```
-
-### Site Information
-
-Manage general website configuration, navigation, contact information, and other global content in:
-
-```text
-src/data/site.js
-```
-
-### Page Content
-
-Page-specific content is organized into dedicated files, such as:
-
-```text
-src/data/home.js
-src/data/about.js
-```
-
-## Development Workflow
-
-1. Make the required changes in the appropriate files.
-2. Run the development server and verify the changes locally.
-3. Run the linter to identify potential issues.
-4. Create a descriptive Git commit.
-5. Push the changes to the repository.
-
-The production website is automatically updated through the deployment pipeline after changes are successfully pushed.
-
-## Architecture Principles
-
-The project follows several core principles:
-
-* **Content–Presentation Separation** — Editable content remains independent of UI components.
-* **Component Reusability** — Common UI elements and page sections are implemented as reusable components.
-* **Responsive Design** — The interface is optimized for desktop, tablet, and mobile devices.
-* **Maintainability** — A structured project layout keeps content, components, pages, utilities, and assets organized.
-* **Performance** — Vite provides fast development and optimized production builds.
-* **Accessibility** — UI components and interactions are designed with usability and accessibility in mind.
-
-## Technology Stack
-
-* **React** — Frontend UI library
-* **Vite** — Development server and build tool
-* **Tailwind CSS** — Utility-first CSS framework
-* **ESLint** — Code quality and linting
-* **JavaScript** — Primary programming language
-
-## Contributing
-
-When contributing to the project, please maintain the existing project structure and follow the established separation between content, presentation, and reusable components.
-
-Before submitting changes, ensure that:
+Before opening a pull request, run:
 
 ```bash
 npm run lint
 npm run build
 ```
 
-both complete successfully.
+Then inspect the primary routes at desktop and mobile widths, including menu navigation, event links, gallery overlays, the contact form, and reduced-motion behaviour.
 
----
+## Current audit notes
 
-**NSS NIT Durgapur**
-*Official website of the National Service Scheme Unit, NIT Durgapur.*
+The production build completes successfully. At the time this README was updated, ESLint reports seven existing errors: unused imports/variables in Home, `home-hero`, and `service-orbit`; one synchronous state update warning promoted to an error in the navbar; and two React ref-update rules in the React Bits `Magnet` and `SpotlightCard` components. Address these before treating lint as a passing quality gate.
+
+## License
+
+No license has been specified for this repository. Add one before distributing or accepting external contributions.
