@@ -38,7 +38,7 @@ export function Navbar() {
           </Link>
         </Magnetic>
 
-        <nav className="hidden items-center gap-1 md:flex" aria-label="Main navigation">
+        <nav className="hidden flex-1 items-center justify-end gap-1 md:flex" aria-label="Main navigation">
           {navItems.map((item) => {
             const active = item.href === "/" ? location.pathname === "/" : location.pathname.startsWith(item.href);
             return <Link key={item.href} to={item.href} data-cursor-label={item.label} className={`relative rounded-full px-4 py-2 text-sm font-semibold transition-colors ${active ? "text-slate-950" : "text-slate-500 hover:text-slate-950"}`}>
@@ -46,11 +46,6 @@ export function Navbar() {
               {active && <motion.span layoutId="nav-current" className="absolute inset-x-4 -bottom-0.5 h-0.5 bg-primary" />}
             </Link>;
           })}
-          <Magnetic strength={0.12} className="ml-3">
-            <Link to="/contact" data-cursor-label="JOIN" className="inline-flex items-center gap-2 rounded-full bg-slate-950 px-4 py-2.5 text-xs font-bold text-white transition-colors hover:bg-primary">
-              Volunteer with us <ArrowUpRight className="size-3.5" />
-            </Link>
-          </Magnetic>
         </nav>
 
         <button type="button" onClick={() => setIsOpen((open) => !open)} className="grid size-11 place-items-center rounded-full border border-slate-900/10 bg-white text-slate-900 md:hidden" aria-label={isOpen ? "Close menu" : "Open menu"} aria-expanded={isOpen}>

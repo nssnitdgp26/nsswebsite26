@@ -62,7 +62,7 @@ function Home() {
               <p className="max-w-md text-base leading-7 text-white/72 sm:text-lg">Student-led service that moves between campus, community, and country—turning care into shared, visible action.</p>
               <Magnet padding={80} magnetStrength={3.6} maxOffset={12} tilt={3} scale={1.02}>
                 <ClickSpark sparkColor="#e55e35" sparkCount={9} sparkRadius={26} sparkSize={8} duration={430}>
-                  <Link to="/events" className="inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3.5 text-sm font-bold text-primary-foreground transition-colors hover:bg-white hover:text-slate-950" data-cursor-label="ENTER ARCHIVE">Enter the archive <ArrowUpRight className="size-4" /></Link>
+                  <Link to="/events" className="inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3.5 text-sm font-bold text-primary-foreground transition-colors hover:bg-white hover:text-slate-950" data-cursor-label="ENTER ARCHIVE">Explore More<ArrowUpRight className="size-4" /></Link>
                 </ClickSpark>
               </Magnet>
             </motion.div>
