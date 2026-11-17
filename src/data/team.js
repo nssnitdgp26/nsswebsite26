@@ -94,7 +94,7 @@ export const currentTeam = {
       name: "Lade Usha Sri",
       role: "",
       department: "",
-      photo: "src/images/2027/usha.png",
+      photo: "src/images/2027/usha.jpeg",
     },
     {
       name: "Basani Sathwik Reddy ",
@@ -142,16 +142,16 @@ export const previousTeams = [
         photo: "src/images/2026/lakshman.png",
       },
       {
-        name: "Member Name",
+        name: "Anakapalli Surya Likhita",
         role: "",
         department: "",
-        photo: "/team/2026/member-3.jpg",
+        photo: "src/images/2026/likhitha.jpeg",
       },
       {
-        name: "Member Name",
+        name: "Kethireddy Lokagna",
         role: "",
         department: "",
-        photo: "/team/2026/member-4.jpg",
+        photo: "src/images/2026/lokagna.jpeg",
       },
       {
         name: "Jaswanth Kandregula",
@@ -202,10 +202,10 @@ export const previousTeams = [
         photo: "src/images/2026/charishma.png",
       },
       {
-        name: "Member Name",
+        name: "Bogula Shelsi Jashuva",
         role: "",
         department: "",
-        photo: "/team/2026/member-12.jpg",
+        photo: "src/images/2026/shelsi.jpeg",
       },
       {
         name: "Palla krishna Bhargavi",
@@ -214,10 +214,10 @@ export const previousTeams = [
         photo: "src/images/2026/bhargavi.png",
       },
       {
-        name: "Member Name",
+        name: "Gorja Nivas",
         role: "",
         department: "",
-        photo: "/team/2026/member-14.jpg",
+        photo: "src/images/2026/nivas.jpeg",
       },
       {
         name: "Sudharshan Reddy Chinthamreddy ",
